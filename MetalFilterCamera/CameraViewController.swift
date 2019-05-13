@@ -16,6 +16,7 @@ class CameraViewController: UIViewController {
 
     var renderer: Renderer!
     var mtkView: MTKView!
+    let context = GContext()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,8 +74,12 @@ extension CameraViewController: MetalCameraSessionDelegate {
                 }
             }
         }
-//        let ttt = textures[0]
-        renderer.colorMap = textures[0]
+        let ttt = textures[0]
+        
+//        let filter = GImageFilterType.mpsUnaryImageKernel(type: .sobel).createImageFilter(context: context)
+        let filter = GImageFilterType.mpsUnaryImageKernel(type: .laplacian).createImageFilter(context: context)
+        filter?.provider0 = SimpleTextureProvider(texture: ttt)
+        renderer.colorMap = filter!.texture!
     }
     
     func metalCameraSession(_ cameraSession: MetalCameraSession, didUpdateState state: MetalCameraSessionState, error: MetalCameraSessionError?) {
@@ -86,5 +91,14 @@ extension CameraViewController: MetalCameraSessionDelegate {
             cameraSession.start()
         }
         NSLog("Session changed state to \(state) with error: \(error?.localizedDescription ?? "None").")
+    }
+}
+
+class SimpleTextureProvider: GTextureProvider {
+    var texture: MTLTexture?
+    
+    init(texture: MTLTexture) {
+        
+        self.texture = texture
     }
 }

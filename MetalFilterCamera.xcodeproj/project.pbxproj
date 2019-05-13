@@ -18,6 +18,25 @@
 		ECFE601222890E9F006AF284 /* MetalCameraSessionTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE600F22890E9E006AF284 /* MetalCameraSessionTypes.swift */; };
 		ECFE601322890E9F006AF284 /* MetalCameraCaptureDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE601022890E9E006AF284 /* MetalCameraCaptureDevice.swift */; };
 		ECFE6015228926F9006AF284 /* GZLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE6014228926F8006AF284 /* GZLog.swift */; };
+		ECFE60282289424F006AF284 /* GImageFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE60172289424F006AF284 /* GImageFilter.swift */; };
+		ECFE60292289424F006AF284 /* GColorGBRFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE60182289424F006AF284 /* GColorGBRFilter.swift */; };
+		ECFE602A2289424F006AF284 /* GSaturationAdjustmentFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE60192289424F006AF284 /* GSaturationAdjustmentFilter.swift */; };
+		ECFE602B2289424F006AF284 /* GMPSUnaryImageFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE601A2289424F006AF284 /* GMPSUnaryImageFilter.swift */; };
+		ECFE602C2289424F006AF284 /* GSepiaFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE601B2289424F006AF284 /* GSepiaFilter.swift */; };
+		ECFE602D2289424F006AF284 /* GContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE601C2289424F006AF284 /* GContext.swift */; };
+		ECFE602E2289424F006AF284 /* GPixellationFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE601D2289424F006AF284 /* GPixellationFilter.swift */; };
+		ECFE602F2289424F006AF284 /* GRotationFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE601E2289424F006AF284 /* GRotationFilter.swift */; };
+		ECFE60302289424F006AF284 /* MainBundleTextureProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE601F2289424F006AF284 /* MainBundleTextureProvider.swift */; };
+		ECFE60312289424F006AF284 /* BnaryImageFilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE60202289424F006AF284 /* BnaryImageFilterType.swift */; };
+		ECFE60322289424F006AF284 /* GMPSUnaryImageFilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE60212289424F006AF284 /* GMPSUnaryImageFilterType.swift */; };
+		ECFE60332289424F006AF284 /* BinaryImageFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE60222289424F006AF284 /* BinaryImageFilter.swift */; };
+		ECFE60342289424F006AF284 /* GLuminanceFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE60232289424F006AF284 /* GLuminanceFilter.swift */; };
+		ECFE60352289424F006AF284 /* GGaussianBlur2DFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE60242289424F006AF284 /* GGaussianBlur2DFilter.swift */; };
+		ECFE60362289424F006AF284 /* GTextureProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE60252289424F006AF284 /* GTextureProvider.swift */; };
+		ECFE60372289424F006AF284 /* GImageFilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE60262289424F006AF284 /* GImageFilterType.swift */; };
+		ECFE60382289424F006AF284 /* GNormalMapFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE60272289424F006AF284 /* GNormalMapFilter.swift */; };
+		ECFE603A22894287006AF284 /* UIImage-extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE603922894286006AF284 /* UIImage-extension.swift */; };
+		ECFE603C2289429F006AF284 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE603B2289429F006AF284 /* UIImageExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +54,25 @@
 		ECFE600F22890E9E006AF284 /* MetalCameraSessionTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalCameraSessionTypes.swift; sourceTree = "<group>"; };
 		ECFE601022890E9E006AF284 /* MetalCameraCaptureDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalCameraCaptureDevice.swift; sourceTree = "<group>"; };
 		ECFE6014228926F8006AF284 /* GZLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GZLog.swift; sourceTree = "<group>"; };
+		ECFE60172289424F006AF284 /* GImageFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GImageFilter.swift; sourceTree = "<group>"; };
+		ECFE60182289424F006AF284 /* GColorGBRFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GColorGBRFilter.swift; sourceTree = "<group>"; };
+		ECFE60192289424F006AF284 /* GSaturationAdjustmentFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GSaturationAdjustmentFilter.swift; sourceTree = "<group>"; };
+		ECFE601A2289424F006AF284 /* GMPSUnaryImageFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GMPSUnaryImageFilter.swift; sourceTree = "<group>"; };
+		ECFE601B2289424F006AF284 /* GSepiaFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GSepiaFilter.swift; sourceTree = "<group>"; };
+		ECFE601C2289424F006AF284 /* GContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GContext.swift; sourceTree = "<group>"; };
+		ECFE601D2289424F006AF284 /* GPixellationFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPixellationFilter.swift; sourceTree = "<group>"; };
+		ECFE601E2289424F006AF284 /* GRotationFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRotationFilter.swift; sourceTree = "<group>"; };
+		ECFE601F2289424F006AF284 /* MainBundleTextureProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainBundleTextureProvider.swift; sourceTree = "<group>"; };
+		ECFE60202289424F006AF284 /* BnaryImageFilterType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BnaryImageFilterType.swift; sourceTree = "<group>"; };
+		ECFE60212289424F006AF284 /* GMPSUnaryImageFilterType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GMPSUnaryImageFilterType.swift; sourceTree = "<group>"; };
+		ECFE60222289424F006AF284 /* BinaryImageFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinaryImageFilter.swift; sourceTree = "<group>"; };
+		ECFE60232289424F006AF284 /* GLuminanceFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLuminanceFilter.swift; sourceTree = "<group>"; };
+		ECFE60242289424F006AF284 /* GGaussianBlur2DFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GGaussianBlur2DFilter.swift; sourceTree = "<group>"; };
+		ECFE60252289424F006AF284 /* GTextureProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GTextureProvider.swift; sourceTree = "<group>"; };
+		ECFE60262289424F006AF284 /* GImageFilterType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GImageFilterType.swift; sourceTree = "<group>"; };
+		ECFE60272289424F006AF284 /* GNormalMapFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GNormalMapFilter.swift; sourceTree = "<group>"; };
+		ECFE603922894286006AF284 /* UIImage-extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage-extension.swift"; sourceTree = "<group>"; };
+		ECFE603B2289429F006AF284 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +105,9 @@
 		ECFE5FF52288F222006AF284 /* MetalFilterCamera */ = {
 			isa = PBXGroup;
 			children = (
+				ECFE603B2289429F006AF284 /* UIImageExtension.swift */,
+				ECFE603922894286006AF284 /* UIImage-extension.swift */,
+				ECFE60162289424F006AF284 /* Filter */,
 				ECFE6014228926F8006AF284 /* GZLog.swift */,
 				ECFE600D22890E9E006AF284 /* camera */,
 				ECFE5FF62288F222006AF284 /* AppDelegate.swift */,
@@ -90,6 +131,30 @@
 				ECFE601022890E9E006AF284 /* MetalCameraCaptureDevice.swift */,
 			);
 			path = camera;
+			sourceTree = "<group>";
+		};
+		ECFE60162289424F006AF284 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				ECFE60172289424F006AF284 /* GImageFilter.swift */,
+				ECFE60182289424F006AF284 /* GColorGBRFilter.swift */,
+				ECFE60192289424F006AF284 /* GSaturationAdjustmentFilter.swift */,
+				ECFE601A2289424F006AF284 /* GMPSUnaryImageFilter.swift */,
+				ECFE601B2289424F006AF284 /* GSepiaFilter.swift */,
+				ECFE601C2289424F006AF284 /* GContext.swift */,
+				ECFE601D2289424F006AF284 /* GPixellationFilter.swift */,
+				ECFE601E2289424F006AF284 /* GRotationFilter.swift */,
+				ECFE601F2289424F006AF284 /* MainBundleTextureProvider.swift */,
+				ECFE60202289424F006AF284 /* BnaryImageFilterType.swift */,
+				ECFE60212289424F006AF284 /* GMPSUnaryImageFilterType.swift */,
+				ECFE60222289424F006AF284 /* BinaryImageFilter.swift */,
+				ECFE60232289424F006AF284 /* GLuminanceFilter.swift */,
+				ECFE60242289424F006AF284 /* GGaussianBlur2DFilter.swift */,
+				ECFE60252289424F006AF284 /* GTextureProvider.swift */,
+				ECFE60262289424F006AF284 /* GImageFilterType.swift */,
+				ECFE60272289424F006AF284 /* GNormalMapFilter.swift */,
+			);
+			path = Filter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,14 +228,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECFE60362289424F006AF284 /* GTextureProvider.swift in Sources */,
+				ECFE60282289424F006AF284 /* GImageFilter.swift in Sources */,
 				ECFE601122890E9F006AF284 /* MetalCameraSession.swift in Sources */,
 				ECFE6015228926F9006AF284 /* GZLog.swift in Sources */,
 				ECFE601322890E9F006AF284 /* MetalCameraCaptureDevice.swift in Sources */,
+				ECFE603C2289429F006AF284 /* UIImageExtension.swift in Sources */,
+				ECFE60382289424F006AF284 /* GNormalMapFilter.swift in Sources */,
+				ECFE60312289424F006AF284 /* BnaryImageFilterType.swift in Sources */,
+				ECFE602B2289424F006AF284 /* GMPSUnaryImageFilter.swift in Sources */,
 				ECFE5FFE2288F222006AF284 /* Shaders.metal in Sources */,
 				ECFE5FFA2288F222006AF284 /* Renderer.swift in Sources */,
+				ECFE602D2289424F006AF284 /* GContext.swift in Sources */,
+				ECFE60302289424F006AF284 /* MainBundleTextureProvider.swift in Sources */,
+				ECFE602A2289424F006AF284 /* GSaturationAdjustmentFilter.swift in Sources */,
 				ECFE601222890E9F006AF284 /* MetalCameraSessionTypes.swift in Sources */,
+				ECFE60292289424F006AF284 /* GColorGBRFilter.swift in Sources */,
+				ECFE602E2289424F006AF284 /* GPixellationFilter.swift in Sources */,
+				ECFE60322289424F006AF284 /* GMPSUnaryImageFilterType.swift in Sources */,
+				ECFE603A22894287006AF284 /* UIImage-extension.swift in Sources */,
 				ECFE5FFC2288F222006AF284 /* CameraViewController.swift in Sources */,
+				ECFE60332289424F006AF284 /* BinaryImageFilter.swift in Sources */,
+				ECFE60352289424F006AF284 /* GGaussianBlur2DFilter.swift in Sources */,
+				ECFE60372289424F006AF284 /* GImageFilterType.swift in Sources */,
+				ECFE60342289424F006AF284 /* GLuminanceFilter.swift in Sources */,
+				ECFE602F2289424F006AF284 /* GRotationFilter.swift in Sources */,
 				ECFE5FF72288F222006AF284 /* AppDelegate.swift in Sources */,
+				ECFE602C2289424F006AF284 /* GSepiaFilter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
