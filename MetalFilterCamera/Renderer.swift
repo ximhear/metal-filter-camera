@@ -40,10 +40,6 @@ class Renderer: NSObject, MTKViewDelegate {
     
     var projectionMatrix: matrix_float4x4 = matrix_float4x4()
     
-    var rotation: Float = 0
-    
-    var mesh: MTKMesh
-    
     init?(metalKitView: MTKView) {
         self.device = metalKitView.device!
         guard let queue = self.device.makeCommandQueue() else { return nil }
@@ -78,13 +74,6 @@ class Renderer: NSObject, MTKViewDelegate {
         depthStateDesciptor.isDepthWriteEnabled = true
         guard let state = device.makeDepthStencilState(descriptor:depthStateDesciptor) else { return nil }
         depthState = state
-        
-        do {
-            mesh = try Renderer.buildMesh(device: device, mtlVertexDescriptor: mtlVertexDescriptor)
-        } catch {
-            print("Unable to build MetalKit Mesh. Error info: \(error)")
-            return nil
-        }
         
         do {
             colorMap = try Renderer.loadTexture(device: device, textureName: "ColorMap")
@@ -204,11 +193,9 @@ class Renderer: NSObject, MTKViewDelegate {
         
         uniforms[0].projectionMatrix = projectionMatrix
         
-        let rotationAxis = float3(1, 1, 0)
-        let modelMatrix = matrix4x4_rotation(radians: rotation, axis: rotationAxis)
-        let viewMatrix = matrix4x4_translation(0.0, 0.0, -8.0)
+        let modelMatrix = matrix_identity_float4x4
+        let viewMatrix = matrix4x4_translation(0.0, 0.0, 0.5)
         uniforms[0].modelViewMatrix = simd_mul(viewMatrix, modelMatrix)
-        rotation += 0.01
     }
     
     func draw(in view: MTKView) {
@@ -249,28 +236,36 @@ class Renderer: NSObject, MTKViewDelegate {
                 renderEncoder.setVertexBuffer(dynamicUniformBuffer, offset:uniformBufferOffset, index: BufferIndex.uniforms.rawValue)
                 renderEncoder.setFragmentBuffer(dynamicUniformBuffer, offset:uniformBufferOffset, index: BufferIndex.uniforms.rawValue)
                 
-                for (index, element) in mesh.vertexDescriptor.layouts.enumerated() {
-                    guard let layout = element as? MDLVertexBufferLayout else {
-                        return
-                    }
-                    
-                    if layout.stride != 0 {
-                        let buffer = mesh.vertexBuffers[index]
-                        renderEncoder.setVertexBuffer(buffer.buffer, offset:buffer.offset, index: index)
-                    }
-                }
+                let vertices: [Float] = [
+                    -1, 1, 0,
+                    -1, -1, 0,
+                    1, -1, 0,
+                    1, 1, 0,
+                ]
+                let textures: [Float] = [
+                    0, 0,
+                    0, 1,
+                    1, 1,
+                    1, 0
+                ]
                 
+                renderEncoder.setVertexBytes(vertices, length: MemoryLayout<Float>.stride * vertices.count, index: 0)
+                renderEncoder.setVertexBytes(textures, length: MemoryLayout<Float>.stride * textures.count, index: 1)
+
                 renderEncoder.setFragmentTexture(colorMap, index: TextureIndex.color.rawValue)
                 
-                for submesh in mesh.submeshes {
-                    renderEncoder.drawIndexedPrimitives(type: submesh.primitiveType,
-                                                        indexCount: submesh.indexCount,
-                                                        indexType: submesh.indexType,
-                                                        indexBuffer: submesh.indexBuffer.buffer,
-                                                        indexBufferOffset: submesh.indexBuffer.offset)
-                    
-                }
+                let indices: [UInt16] = [
+                    0, 1, 2,
+                    0, 2, 3
+                ]
+                let indexBuffer = device.makeBuffer(bytes: indices, length: MemoryLayout<UInt16>.stride * indices.count, options: .storageModeShared)
                 
+                renderEncoder.drawIndexedPrimitives(type: .triangle,
+                                                    indexCount: indices.count ,
+                                                    indexType: .uint16,
+                                                    indexBuffer: indexBuffer!,
+                                                    indexBufferOffset: 0)
+
                 renderEncoder.popDebugGroup()
                 
                 renderEncoder.endEncoding()
@@ -288,7 +283,14 @@ class Renderer: NSObject, MTKViewDelegate {
         /// Respond to drawable size or orientation changes here
         
         let aspect = Float(size.width) / Float(size.height)
-        projectionMatrix = matrix_perspective_right_hand(fovyRadians: radians_from_degrees(65), aspectRatio:aspect, nearZ: 0.1, farZ: 100.0)
+        let side: Float = 1
+        if aspect > 1 {
+            projectionMatrix = matrix_float4x4_ortho_left_hand(left: -side * aspect, right: side * aspect, bottom: -side, top: side, near: 0, far: side)
+        }
+        else {
+            projectionMatrix = matrix_float4x4_ortho_left_hand(left: -side, right: side, bottom: -side / aspect, top: side / aspect, near: 0, far: side)
+        }
+//        projectionMatrix = matrix_perspective_left_hand(fovyRadians: radians_from_degrees(65), aspectRatio:aspect, nearZ: 0.1, farZ: 10.0)
     }
 }
 
@@ -322,6 +324,64 @@ func matrix_perspective_right_hand(fovyRadians fovy: Float, aspectRatio: Float, 
                                          vector_float4( 0,  0, zs * nearZ, 0)))
 }
 
+func matrix_perspective_left_hand(fovyRadians fovy: Float, aspectRatio: Float, nearZ: Float, farZ: Float) -> matrix_float4x4 {
+    let ys = 1 / tanf(fovy * 0.5)
+    let xs = ys / aspectRatio
+    let zs = farZ / (farZ - nearZ)
+    return matrix_float4x4.init(columns:(vector_float4(xs,  0, 0,   0),
+                                         vector_float4( 0, ys, 0,   0),
+                                         vector_float4( 0,  0, zs, 1),
+                                         vector_float4( 0,  0, zs * -nearZ, 0)))
+}
+
 func radians_from_degrees(_ degrees: Float) -> Float {
     return (degrees / 180) * .pi
+}
+
+//matrix_float4x4 AAPL_SIMD_OVERLOAD matrix_ortho_right_hand(float left, float right, float bottom, float top, float nearZ, float farZ) {
+//    return matrix_make(2 / (right - left), 0, 0, 0,
+//                       0, 2 / (top - bottom), 0, 0,
+//                       0, 0, -1 / (farZ - nearZ), 0,
+//                       (left + right) / (left - right), (top + bottom) / (bottom - top), nearZ / (nearZ - farZ), 1);
+//}
+//
+//matrix_float4x4 AAPL_SIMD_OVERLOAD matrix_ortho_left_hand(float left, float right, float bottom, float top, float nearZ, float farZ) {
+//    return matrix_make(2 / (right - left), 0, 0, 0,
+//                       0, 2 / (top - bottom), 0, 0,
+//                       0, 0, 1 / (farZ - nearZ), 0,
+//                       (left + right) / (left - right), (top + bottom) / (bottom - top), nearZ / (nearZ - farZ), 1);
+//}
+
+func matrix_float4x4_ortho_right_hand(left: Float, right: Float, bottom: Float, top: Float, near: Float, far: Float) -> matrix_float4x4 {
+    let ral = right + left
+    let rsl = right - left
+    let tab = top + bottom
+    let tsb = top - bottom
+//    let fan = far + near
+    let fsn = far - near
+    
+    let P = vector_float4( 2.0 / rsl, 0, 0, 0 )
+    let Q = vector_float4( 0.0, 2.0 / tsb, 0.0, 0.0 )
+    let R = vector_float4( 0.0, 0.0, -1.0 / fsn, 0.0 )
+    let S = vector_float4( -ral / rsl, -tab / tsb, -near / fsn, 1.0 )
+    
+    let mat = matrix_float4x4(columns:( P, Q, R, S ))
+    return mat
+}
+
+func matrix_float4x4_ortho_left_hand(left: Float, right: Float, bottom: Float, top: Float, near: Float, far: Float) -> matrix_float4x4 {
+    let ral = right + left
+    let rsl = right - left
+    let tab = top + bottom
+    let tsb = top - bottom
+//    let fan = far + near
+    let fsn = far - near
+    
+    let P = vector_float4( 2.0 / rsl, 0, 0, 0 )
+    let Q = vector_float4( 0.0, 2.0 / tsb, 0.0, 0.0 )
+    let R = vector_float4( 0.0, 0.0, 1.0 / fsn, 0.0 )
+    let S = vector_float4( -ral / rsl, -tab / tsb, -near / fsn, 1.0 )
+    
+    let mat = matrix_float4x4(columns:( P, Q, R, S ))
+    return mat
 }
