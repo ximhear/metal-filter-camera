@@ -76,8 +76,8 @@ extension CameraViewController: MetalCameraSessionDelegate {
         }
         let ttt = textures[0]
         
-//        let filter = GImageFilterType.mpsUnaryImageKernel(type: .sobel).createImageFilter(context: context)
-        let filter = GImageFilterType.mpsUnaryImageKernel(type: .laplacian).createImageFilter(context: context)
+        let filter = GImageFilterType.mpsUnaryImageKernel(type: .sobel).createImageFilter(context: context)
+//        let filter = GImageFilterType.mpsUnaryImageKernel(type: .laplacian).createImageFilter(context: context)
         filter?.provider0 = SimpleTextureProvider(texture: ttt)
         renderer.colorMap = filter!.texture!
     }
