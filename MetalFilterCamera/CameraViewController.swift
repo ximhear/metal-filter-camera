@@ -108,6 +108,14 @@ extension CameraViewController{
     
     @IBAction func pictureTaken(_ sender: Any) {
         GZLogFunc()
+        
+        guard let image = UIImage(texture: renderer?.colorMap), let oriented = getImageFrom(image: image) else {
+            return
+        }
+        UIImageWriteToSavedPhotosAlbum(oriented, self, #selector(finishWriteImage(_:didFinishSavingWithError:contextInfo:)), nil)
+    }
+    
+    @objc private func finishWriteImage(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
     }
     
     @IBAction func sliderValueChanged(_ sender: Any) {
@@ -200,6 +208,121 @@ extension CameraViewController{
         }
         
         sliderValue = Float(slider.value)
+    }
+    
+    func getImageFrom(image: UIImage) ->UIImage? {
+        var imageOrientation: UIImage.Orientation = .right
+        GZLogFunc(renderer.deviceOrientation.rawValue)
+
+        if renderer.deviceOrientation == .portrait {
+            imageOrientation = .right
+        }
+        else if renderer.deviceOrientation == .portraitUpsideDown {
+            imageOrientation = .left
+        }
+        else if renderer.deviceOrientation == .landscapeLeft {
+            imageOrientation = .up
+        }
+        else if renderer.deviceOrientation == .landscapeRight {
+            imageOrientation = .down
+        }
+
+        //        let image1 = UIImage(cgImage: cgImage)
+        guard let rotatedCgImage = createMatchingBackingDataWithImage1(imageRef: image.cgImage, orienation: imageOrientation) else {
+            return nil
+        }
+        let image = UIImage(cgImage: rotatedCgImage, scale: 1, orientation: .up)
+        return image
+    }
+    
+    func createMatchingBackingDataWithImage1(imageRef: CGImage?, orienation: UIImage.Orientation) -> CGImage? {
+        var orientedImage: CGImage?
+        
+        if let imageRef = imageRef {
+            let originalWidth = imageRef.width
+            let originalHeight = imageRef.height
+            let bitsPerComponent = imageRef.bitsPerComponent
+            let bytesPerRow = imageRef.bytesPerRow
+            
+            let colorSpace = imageRef.colorSpace
+            let bitmapInfo = imageRef.bitmapInfo
+            
+            var degreesToRotate: Double
+            var swapWidthHeight: Bool
+            var mirrored: Bool
+            switch orienation {
+            case .up:
+                degreesToRotate = 0.0
+                swapWidthHeight = false
+                mirrored = false
+                break
+            case .upMirrored:
+                degreesToRotate = 0.0
+                swapWidthHeight = false
+                mirrored = true
+                break
+            case .right:
+                degreesToRotate = -90.0
+                swapWidthHeight = true
+                mirrored = false
+                break
+            case .rightMirrored:
+                degreesToRotate = -90.0
+                swapWidthHeight = true
+                mirrored = true
+                break
+            case .down:
+                degreesToRotate = 180.0
+                swapWidthHeight = false
+                mirrored = false
+                break
+            case .downMirrored:
+                degreesToRotate = 180.0
+                swapWidthHeight = false
+                mirrored = true
+                break
+            case .left:
+                degreesToRotate = 90.0
+                swapWidthHeight = true
+                mirrored = false
+                break
+            case .leftMirrored:
+                degreesToRotate = 90.0
+                swapWidthHeight = true
+                mirrored = true
+                break
+            }
+            let radians = degreesToRotate * Double.pi / 180
+            
+            var width: Int
+            var height: Int
+            if swapWidthHeight {
+                width = originalHeight
+                height = originalWidth
+            } else {
+                width = originalWidth
+                height = originalHeight
+            }
+            
+            if let contextRef = CGContext(data: nil, width: width, height: height, bitsPerComponent: bitsPerComponent, bytesPerRow: bytesPerRow, space: colorSpace!, bitmapInfo: bitmapInfo.rawValue) {
+                
+                contextRef.translateBy(x: CGFloat(width) / 2.0, y: CGFloat(height) / 2.0)
+                if mirrored {
+                    contextRef.scaleBy(x: -1.0, y: 1.0)
+                }
+                contextRef.rotate(by: CGFloat(radians))
+                if swapWidthHeight {
+                    contextRef.translateBy(x: -CGFloat(height) / 2.0, y: -CGFloat(width) / 2.0)
+                } else {
+                    contextRef.translateBy(x: -CGFloat(width) / 2.0, y: -CGFloat(height) / 2.0)
+                }
+                contextRef.draw(imageRef, in: CGRect(x: 0, y: 0, width: originalWidth, height: originalHeight))
+                
+                orientedImage = contextRef.makeImage()
+            }
+        }
+        
+        return orientedImage
     }
 }
 
