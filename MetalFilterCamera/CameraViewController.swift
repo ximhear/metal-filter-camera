@@ -73,6 +73,7 @@ extension CameraViewController: MetalCameraSessionDelegate {
                 }
             }
         }
+//        let ttt = textures[0]
         renderer.colorMap = textures[0]
     }
     

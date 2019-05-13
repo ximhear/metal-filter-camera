@@ -42,13 +42,13 @@ vertex ColorInOut vertexShader(Vertex in [[stage_in]],
 
 fragment float4 fragmentShader(ColorInOut in [[stage_in]],
                                constant Uniforms & uniforms [[ buffer(BufferIndexUniforms) ]],
-                               texture2d<half> colorMap     [[ texture(TextureIndexColor) ]])
+                               texture2d<float> colorMap     [[ texture(TextureIndexColor) ]])
 {
     constexpr sampler colorSampler(mip_filter::linear,
                                    mag_filter::linear,
                                    min_filter::linear);
 
-    half4 colorSample   = colorMap.sample(colorSampler, in.texCoord.xy);
+    float4 colorSample = colorMap.sample(colorSampler, in.texCoord.xy);
 
 //    return float4(1, 0, 0, 1);
 //    float r = dot(colorSample.rgb, half3(0.2126, 0.7152, 0.0722));
