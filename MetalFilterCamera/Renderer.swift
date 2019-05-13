@@ -269,11 +269,12 @@ class Renderer: NSObject, MTKViewDelegate {
                 
                 var fitRation: Float
                 
+                // max : aspect fit, min : aspect fill
                 if deviceOrientation.isPortrait {
-                    fitRation = max(Float(colorMap.height) / Float(right - left), Float(colorMap.width) / Float(top - bottom))
+                    fitRation = min(Float(colorMap.height) / Float(right - left), Float(colorMap.width) / Float(top - bottom))
                 }
                 else {
-                    fitRation = max(Float(colorMap.width) / Float(right - left), Float(colorMap.height) / Float(top - bottom))
+                    fitRation = min(Float(colorMap.width) / Float(right - left), Float(colorMap.height) / Float(top - bottom))
                 }
                 left = Float(colorMap.width) / fitRation / 2.0
                 top = Float(colorMap.height) / fitRation / 2.0
