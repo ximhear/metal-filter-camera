@@ -37,6 +37,7 @@
 		ECFE60382289424F006AF284 /* GNormalMapFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE60272289424F006AF284 /* GNormalMapFilter.swift */; };
 		ECFE603A22894287006AF284 /* UIImage-extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE603922894286006AF284 /* UIImage-extension.swift */; };
 		ECFE603C2289429F006AF284 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE603B2289429F006AF284 /* UIImageExtension.swift */; };
+		ECFE603E22894ED2006AF284 /* FilterShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = ECFE603D22894ED1006AF284 /* FilterShaders.metal */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,7 @@
 		ECFE60272289424F006AF284 /* GNormalMapFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GNormalMapFilter.swift; sourceTree = "<group>"; };
 		ECFE603922894286006AF284 /* UIImage-extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage-extension.swift"; sourceTree = "<group>"; };
 		ECFE603B2289429F006AF284 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		ECFE603D22894ED1006AF284 /* FilterShaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = FilterShaders.metal; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 				ECFE60252289424F006AF284 /* GTextureProvider.swift */,
 				ECFE60262289424F006AF284 /* GImageFilterType.swift */,
 				ECFE60272289424F006AF284 /* GNormalMapFilter.swift */,
+				ECFE603D22894ED1006AF284 /* FilterShaders.metal */,
 			);
 			path = Filter;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 				ECFE60352289424F006AF284 /* GGaussianBlur2DFilter.swift in Sources */,
 				ECFE60372289424F006AF284 /* GImageFilterType.swift in Sources */,
 				ECFE60342289424F006AF284 /* GLuminanceFilter.swift in Sources */,
+				ECFE603E22894ED2006AF284 /* FilterShaders.metal in Sources */,
 				ECFE602F2289424F006AF284 /* GRotationFilter.swift in Sources */,
 				ECFE5FF72288F222006AF284 /* AppDelegate.swift in Sources */,
 				ECFE602C2289424F006AF284 /* GSepiaFilter.swift in Sources */,
