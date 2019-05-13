@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		ECFE5FF72288F222006AF284 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE5FF62288F222006AF284 /* AppDelegate.swift */; };
 		ECFE5FFA2288F222006AF284 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE5FF92288F222006AF284 /* Renderer.swift */; };
-		ECFE5FFC2288F222006AF284 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE5FFB2288F222006AF284 /* GameViewController.swift */; };
+		ECFE5FFC2288F222006AF284 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE5FFB2288F222006AF284 /* CameraViewController.swift */; };
 		ECFE5FFE2288F222006AF284 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = ECFE5FFD2288F222006AF284 /* Shaders.metal */; };
 		ECFE60012288F222006AF284 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECFE5FFF2288F222006AF284 /* Main.storyboard */; };
 		ECFE60032288F224006AF284 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECFE60022288F224006AF284 /* Assets.xcassets */; };
@@ -21,7 +21,7 @@
 		ECFE5FF62288F222006AF284 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ECFE5FF82288F222006AF284 /* ShaderTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShaderTypes.h; sourceTree = "<group>"; };
 		ECFE5FF92288F222006AF284 /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
-		ECFE5FFB2288F222006AF284 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		ECFE5FFB2288F222006AF284 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		ECFE5FFD2288F222006AF284 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		ECFE60002288F222006AF284 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ECFE60022288F224006AF284 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -62,7 +62,7 @@
 				ECFE5FF62288F222006AF284 /* AppDelegate.swift */,
 				ECFE5FF82288F222006AF284 /* ShaderTypes.h */,
 				ECFE5FF92288F222006AF284 /* Renderer.swift */,
-				ECFE5FFB2288F222006AF284 /* GameViewController.swift */,
+				ECFE5FFB2288F222006AF284 /* CameraViewController.swift */,
 				ECFE5FFD2288F222006AF284 /* Shaders.metal */,
 				ECFE5FFF2288F222006AF284 /* Main.storyboard */,
 				ECFE60022288F224006AF284 /* Assets.xcassets */,
@@ -145,7 +145,7 @@
 			files = (
 				ECFE5FFE2288F222006AF284 /* Shaders.metal in Sources */,
 				ECFE5FFA2288F222006AF284 /* Renderer.swift in Sources */,
-				ECFE5FFC2288F222006AF284 /* GameViewController.swift in Sources */,
+				ECFE5FFC2288F222006AF284 /* CameraViewController.swift in Sources */,
 				ECFE5FF72288F222006AF284 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

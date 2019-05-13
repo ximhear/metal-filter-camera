@@ -1,5 +1,5 @@
 //
-//  GameViewController.swift
+//  CameraViewController.swift
 //  MetalFilterCamera
 //
 //  Created by gzonelee on 13/05/2019.
@@ -10,7 +10,7 @@ import UIKit
 import MetalKit
 
 // Our iOS specific view controller
-class GameViewController: UIViewController {
+class CameraViewController: UIViewController {
 
     var renderer: Renderer!
     var mtkView: MTKView!
