@@ -19,18 +19,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ma-XG-XtK">
-                                <rect key="frame" x="192" y="812" width="30" height="30"/>
+                                <rect key="frame" x="183.5" y="801" width="47" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="촬 영"/>
+                                <connections>
+                                    <action selector="pictureTaken:" destination="BV1-FR-VrT" eventType="touchUpInside" id="fmq-wX-tyE"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEl-bj-6IR">
-                                <rect key="frame" x="342" y="812" width="56" height="30"/>
+                                <rect key="frame" x="342" y="806.5" width="56" height="30"/>
                                 <state key="normal" title="필터 선택"/>
                                 <connections>
                                     <action selector="filterSelectionClicked:" destination="BV1-FR-VrT" eventType="touchUpInside" id="l0W-UM-mNr"/>
                                 </connections>
                             </button>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="KSc-Iz-97E">
-                                <rect key="frame" x="30" y="738" width="354" height="31"/>
+                                <rect key="frame" x="30" y="727" width="354" height="31"/>
                                 <connections>
                                     <action selector="sliderValueChanged:" destination="BV1-FR-VrT" eventType="valueChanged" id="dl1-dL-N69"/>
                                 </connections>

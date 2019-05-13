@@ -83,7 +83,7 @@ class GImageFilter: GTextureProvider, GTextureConsumer, GFilterValueSetter {
     
     func applyFilter() {
         var inputTexture = self.provider0.texture!
-        GZLogFunc(inputTexture)
+//        GZLogFunc(inputTexture)
         if self.filterType.inPlaceTexture == false {
             if self.internalTexture == nil ||
                 self.internalTexture!.width != inputTexture.width ||
@@ -149,9 +149,9 @@ class GImageFilter: GTextureProvider, GTextureConsumer, GFilterValueSetter {
                 GZLogFunc("\(inputTexture.width) x \(inputTexture.height)")
                 internalTexture = inputTexture
             }
-            GZLogFunc()
+//            GZLogFunc()
         }
-        GZLogFunc()
+//        GZLogFunc()
     }
 
     func encode(input0: MTLTexture, input1: MTLTexture, finalOutput: MTLTexture, commandBuffer: MTLCommandBuffer) {

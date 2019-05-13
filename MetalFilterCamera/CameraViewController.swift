@@ -22,6 +22,7 @@ class CameraViewController: UIViewController {
     var renderer: Renderer!
     var mtkView: MTKView!
     let context = GContext()
+    var sliderValue: Float = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,14 +87,9 @@ extension CameraViewController: MetalCameraSessionDelegate {
         
 //        let filter = GImageFilterType.mpsUnaryImageKernel(type: .sobel).createImageFilter(context: context)
 //        let filter = GImageFilterType.mpsUnaryImageKernel(type: .laplacian).createImageFilter(context: context)
-        DispatchQueue.main.async {[weak self] in
-            guard let welf = self else {
-                return
-            }
-            welf.imageFilter?.setValue(welf.slider.value)
-            welf.imageFilter?.provider0 = SimpleTextureProvider(texture: ttt)
-            welf.renderer.colorMap = welf.imageFilter!.texture!
-        }
+        imageFilter?.setValue(self.sliderValue)
+        imageFilter?.provider0 = SimpleTextureProvider(texture: ttt)
+        renderer.colorMap = self.imageFilter!.texture!
     }
     
     func metalCameraSession(_ cameraSession: MetalCameraSession, didUpdateState state: MetalCameraSessionState, error: MetalCameraSessionError?) {
@@ -106,9 +102,18 @@ extension CameraViewController: MetalCameraSessionDelegate {
         }
         NSLog("Session changed state to \(state) with error: \(error?.localizedDescription ?? "None").")
     }
+}
+
+extension CameraViewController{
+    
+    @IBAction func pictureTaken(_ sender: Any) {
+        GZLogFunc()
+    }
     
     @IBAction func sliderValueChanged(_ sender: Any) {
         GZLogFunc()
+        
+        sliderValue = Float(slider.value)
     }
 
     @IBAction func filterSelectionClicked(_ sender: Any) {
@@ -193,6 +198,8 @@ extension CameraViewController: MetalCameraSessionDelegate {
         default:
             slider.isHidden = true
         }
+        
+        sliderValue = Float(slider.value)
     }
 }
 
