@@ -14,6 +14,9 @@
 		ECFE60012288F222006AF284 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECFE5FFF2288F222006AF284 /* Main.storyboard */; };
 		ECFE60032288F224006AF284 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECFE60022288F224006AF284 /* Assets.xcassets */; };
 		ECFE60062288F224006AF284 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECFE60042288F224006AF284 /* LaunchScreen.storyboard */; };
+		ECFE601122890E9F006AF284 /* MetalCameraSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE600E22890E9E006AF284 /* MetalCameraSession.swift */; };
+		ECFE601222890E9F006AF284 /* MetalCameraSessionTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE600F22890E9E006AF284 /* MetalCameraSessionTypes.swift */; };
+		ECFE601322890E9F006AF284 /* MetalCameraCaptureDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE601022890E9E006AF284 /* MetalCameraCaptureDevice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +30,9 @@
 		ECFE60022288F224006AF284 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ECFE60052288F224006AF284 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ECFE60072288F224006AF284 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ECFE600E22890E9E006AF284 /* MetalCameraSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalCameraSession.swift; sourceTree = "<group>"; };
+		ECFE600F22890E9E006AF284 /* MetalCameraSessionTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalCameraSessionTypes.swift; sourceTree = "<group>"; };
+		ECFE601022890E9E006AF284 /* MetalCameraCaptureDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalCameraCaptureDevice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +65,7 @@
 		ECFE5FF52288F222006AF284 /* MetalFilterCamera */ = {
 			isa = PBXGroup;
 			children = (
+				ECFE600D22890E9E006AF284 /* camera */,
 				ECFE5FF62288F222006AF284 /* AppDelegate.swift */,
 				ECFE5FF82288F222006AF284 /* ShaderTypes.h */,
 				ECFE5FF92288F222006AF284 /* Renderer.swift */,
@@ -70,6 +77,16 @@
 				ECFE60072288F224006AF284 /* Info.plist */,
 			);
 			path = MetalFilterCamera;
+			sourceTree = "<group>";
+		};
+		ECFE600D22890E9E006AF284 /* camera */ = {
+			isa = PBXGroup;
+			children = (
+				ECFE600E22890E9E006AF284 /* MetalCameraSession.swift */,
+				ECFE600F22890E9E006AF284 /* MetalCameraSessionTypes.swift */,
+				ECFE601022890E9E006AF284 /* MetalCameraCaptureDevice.swift */,
+			);
+			path = camera;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,8 +160,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECFE601122890E9F006AF284 /* MetalCameraSession.swift in Sources */,
+				ECFE601322890E9F006AF284 /* MetalCameraCaptureDevice.swift in Sources */,
 				ECFE5FFE2288F222006AF284 /* Shaders.metal in Sources */,
 				ECFE5FFA2288F222006AF284 /* Renderer.swift in Sources */,
+				ECFE601222890E9F006AF284 /* MetalCameraSessionTypes.swift in Sources */,
 				ECFE5FFC2288F222006AF284 /* CameraViewController.swift in Sources */,
 				ECFE5FF72288F222006AF284 /* AppDelegate.swift in Sources */,
 			);

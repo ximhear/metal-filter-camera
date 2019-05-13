@@ -12,6 +12,8 @@ import MetalKit
 // Our iOS specific view controller
 class CameraViewController: UIViewController {
 
+    var session: MetalCameraSession?
+    
     var renderer: Renderer!
     var mtkView: MTKView!
 
@@ -42,5 +44,35 @@ class CameraViewController: UIViewController {
         renderer.mtkView(mtkView, drawableSizeWillChange: mtkView.drawableSize)
 
         mtkView.delegate = renderer
+        
+        session = MetalCameraSession(delegate: self)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        session?.start()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        session?.stop()
+    }
+}
+
+// MARK: - MetalCameraSessionDelegate
+extension CameraViewController: MetalCameraSessionDelegate {
+    func metalCameraSession(_ session: MetalCameraSession, didReceiveFrameAsTextures textures: [MTLTexture], withTimestamp timestamp: Double) {
+        renderer.colorMap = textures[0]
+    }
+    
+    func metalCameraSession(_ cameraSession: MetalCameraSession, didUpdateState state: MetalCameraSessionState, error: MetalCameraSessionError?) {
+        
+        if error == .captureSessionRuntimeError {
+            /**
+             *  In this app we are going to ignore capture session runtime errors
+             */
+            cameraSession.start()
+        }
+        NSLog("Session changed state to \(state) with error: \(error?.localizedDescription ?? "None").")
     }
 }
