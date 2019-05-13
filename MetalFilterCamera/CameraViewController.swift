@@ -13,7 +13,7 @@ import MetalKit
 class CameraViewController: UIViewController {
 
     var session: MetalCameraSession?
-    
+
     var renderer: Renderer!
     var mtkView: MTKView!
 
@@ -62,6 +62,17 @@ class CameraViewController: UIViewController {
 // MARK: - MetalCameraSessionDelegate
 extension CameraViewController: MetalCameraSessionDelegate {
     func metalCameraSession(_ session: MetalCameraSession, didReceiveFrameAsTextures textures: [MTLTexture], withTimestamp timestamp: Double) {
+        if UIDevice.current.orientation.isValidInterfaceOrientation {
+            
+            if UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad {
+                renderer.deviceOrientation = UIDevice.current.orientation
+            }
+            else {
+                if UIDevice.current.orientation.rawValue != 2 {
+                    renderer.deviceOrientation = UIDevice.current.orientation
+                }
+            }
+        }
         renderer.colorMap = textures[0]
     }
     

@@ -29,7 +29,8 @@ class Renderer: NSObject, MTKViewDelegate {
     var pipelineState: MTLRenderPipelineState
     var depthState: MTLDepthStencilState
     var colorMap: MTLTexture
-    
+    var deviceOrientation: UIDeviceOrientation = .portrait
+
     let inFlightSemaphore = DispatchSemaphore(value: maxBuffersInFlight)
     
     var uniformBufferOffset = 0
@@ -193,7 +194,18 @@ class Renderer: NSObject, MTKViewDelegate {
         
         uniforms[0].projectionMatrix = projectionMatrix
         
-        let modelMatrix = matrix_identity_float4x4
+        var degrees:Float = 0
+        if deviceOrientation.rawValue == 1 {
+            degrees = -90
+        }
+        else if deviceOrientation.rawValue == 2 {
+            degrees = 90
+        }
+        else if deviceOrientation.rawValue == 4 {
+            degrees = 180
+        }
+        let radians = radians_from_degrees(degrees)
+        let modelMatrix = matrix4x4_rotation(radians: radians, axis: float3(0, 0, 1))
         let viewMatrix = matrix4x4_translation(0.0, 0.0, 0.5)
         uniforms[0].modelViewMatrix = simd_mul(viewMatrix, modelMatrix)
     }
@@ -235,12 +247,42 @@ class Renderer: NSObject, MTKViewDelegate {
                 
                 renderEncoder.setVertexBuffer(dynamicUniformBuffer, offset:uniformBufferOffset, index: BufferIndex.uniforms.rawValue)
                 renderEncoder.setFragmentBuffer(dynamicUniformBuffer, offset:uniformBufferOffset, index: BufferIndex.uniforms.rawValue)
+
+                let aspect = Float(view.drawableSize.width) / Float(view.drawableSize.height)
+                let side: Float = 1
+                var left: Float
+                var right: Float
+                var top: Float
+                var bottom: Float
+                if aspect > 1 {
+                    left = -side * aspect
+                    right = side * aspect
+                    top = side
+                    bottom = -side
+                }
+                else {
+                    left = -side
+                    right = side
+                    top = side / aspect
+                    bottom = -side  / aspect
+                }
                 
+                var fitRation: Float
+                
+                if deviceOrientation.isPortrait {
+                    fitRation = max(Float(colorMap.height) / Float(right - left), Float(colorMap.width) / Float(top - bottom))
+                }
+                else {
+                    fitRation = max(Float(colorMap.width) / Float(right - left), Float(colorMap.height) / Float(top - bottom))
+                }
+                left = Float(colorMap.width) / fitRation / 2.0
+                top = Float(colorMap.height) / fitRation / 2.0
+
                 let vertices: [Float] = [
-                    -1, 1, 0,
-                    -1, -1, 0,
-                    1, -1, 0,
-                    1, 1, 0,
+                    -left, top, 0,
+                    -left, -top, 0,
+                    left, -top, 0,
+                    left, top, 0,
                 ]
                 let textures: [Float] = [
                     0, 0,

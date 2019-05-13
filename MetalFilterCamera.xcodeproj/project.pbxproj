@@ -17,6 +17,7 @@
 		ECFE601122890E9F006AF284 /* MetalCameraSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE600E22890E9E006AF284 /* MetalCameraSession.swift */; };
 		ECFE601222890E9F006AF284 /* MetalCameraSessionTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE600F22890E9E006AF284 /* MetalCameraSessionTypes.swift */; };
 		ECFE601322890E9F006AF284 /* MetalCameraCaptureDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE601022890E9E006AF284 /* MetalCameraCaptureDevice.swift */; };
+		ECFE6015228926F9006AF284 /* GZLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE6014228926F8006AF284 /* GZLog.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		ECFE600E22890E9E006AF284 /* MetalCameraSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalCameraSession.swift; sourceTree = "<group>"; };
 		ECFE600F22890E9E006AF284 /* MetalCameraSessionTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalCameraSessionTypes.swift; sourceTree = "<group>"; };
 		ECFE601022890E9E006AF284 /* MetalCameraCaptureDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalCameraCaptureDevice.swift; sourceTree = "<group>"; };
+		ECFE6014228926F8006AF284 /* GZLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GZLog.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 		ECFE5FF52288F222006AF284 /* MetalFilterCamera */ = {
 			isa = PBXGroup;
 			children = (
+				ECFE6014228926F8006AF284 /* GZLog.swift */,
 				ECFE600D22890E9E006AF284 /* camera */,
 				ECFE5FF62288F222006AF284 /* AppDelegate.swift */,
 				ECFE5FF82288F222006AF284 /* ShaderTypes.h */,
@@ -161,6 +164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECFE601122890E9F006AF284 /* MetalCameraSession.swift in Sources */,
+				ECFE6015228926F9006AF284 /* GZLog.swift in Sources */,
 				ECFE601322890E9F006AF284 /* MetalCameraCaptureDevice.swift in Sources */,
 				ECFE5FFE2288F222006AF284 /* Shaders.metal in Sources */,
 				ECFE5FFA2288F222006AF284 /* Renderer.swift in Sources */,

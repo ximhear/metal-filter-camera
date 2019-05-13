@@ -51,5 +51,7 @@ fragment float4 fragmentShader(ColorInOut in [[stage_in]],
     half4 colorSample   = colorMap.sample(colorSampler, in.texCoord.xy);
 
 //    return float4(1, 0, 0, 1);
+//    float r = dot(colorSample.rgb, half3(0.2126, 0.7152, 0.0722));
+//    return float4(r, r, r, 1.0);
     return float4(colorSample);
 }
