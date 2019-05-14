@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ECEF3662228B8AF6007414A1 /* SimpleTextureProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEF3661228B8AF6007414A1 /* SimpleTextureProvider.swift */; };
+		ECEF3664228B8B35007414A1 /* MTLTexture-extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEF3663228B8B35007414A1 /* MTLTexture-extension.swift */; };
 		ECFE5FF72288F222006AF284 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE5FF62288F222006AF284 /* AppDelegate.swift */; };
 		ECFE5FFA2288F222006AF284 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE5FF92288F222006AF284 /* Renderer.swift */; };
 		ECFE5FFC2288F222006AF284 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE5FFB2288F222006AF284 /* CameraViewController.swift */; };
@@ -41,6 +43,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		ECEF3661228B8AF6007414A1 /* SimpleTextureProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTextureProvider.swift; sourceTree = "<group>"; };
+		ECEF3663228B8B35007414A1 /* MTLTexture-extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MTLTexture-extension.swift"; sourceTree = "<group>"; };
 		ECFE5FF32288F222006AF284 /* MetalFilterCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetalFilterCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECFE5FF62288F222006AF284 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ECFE5FF82288F222006AF284 /* ShaderTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShaderTypes.h; sourceTree = "<group>"; };
@@ -121,6 +125,7 @@
 				ECFE60022288F224006AF284 /* Assets.xcassets */,
 				ECFE60042288F224006AF284 /* LaunchScreen.storyboard */,
 				ECFE60072288F224006AF284 /* Info.plist */,
+				ECEF3663228B8B35007414A1 /* MTLTexture-extension.swift */,
 			);
 			path = MetalFilterCamera;
 			sourceTree = "<group>";
@@ -156,6 +161,7 @@
 				ECFE60252289424F006AF284 /* GTextureProvider.swift */,
 				ECFE60272289424F006AF284 /* GNormalMapFilter.swift */,
 				ECFE603D22894ED1006AF284 /* FilterShaders.metal */,
+				ECEF3661228B8AF6007414A1 /* SimpleTextureProvider.swift */,
 			);
 			path = Filter;
 			sourceTree = "<group>";
@@ -232,12 +238,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECFE60362289424F006AF284 /* GTextureProvider.swift in Sources */,
+				ECEF3664228B8B35007414A1 /* MTLTexture-extension.swift in Sources */,
 				ECFE60282289424F006AF284 /* GImageFilter.swift in Sources */,
 				ECFE601122890E9F006AF284 /* MetalCameraSession.swift in Sources */,
 				ECFE6015228926F9006AF284 /* GZLog.swift in Sources */,
 				ECFE601322890E9F006AF284 /* MetalCameraCaptureDevice.swift in Sources */,
 				ECFE603C2289429F006AF284 /* UIImageExtension.swift in Sources */,
 				ECFE60382289424F006AF284 /* GNormalMapFilter.swift in Sources */,
+				ECEF3662228B8AF6007414A1 /* SimpleTextureProvider.swift in Sources */,
 				ECFE60312289424F006AF284 /* BnaryImageFilterType.swift in Sources */,
 				ECFE602B2289424F006AF284 /* GMPSUnaryImageFilter.swift in Sources */,
 				ECFE5FFE2288F222006AF284 /* Shaders.metal in Sources */,
