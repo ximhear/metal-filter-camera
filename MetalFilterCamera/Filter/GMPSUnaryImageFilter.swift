@@ -76,6 +76,7 @@ class GMPSUnaryImageFilter: GImageFilter {
     
     func sobel(_ input: MTLTexture, _ output: MTLTexture, _ commandBuffer: MTLCommandBuffer) {
         let shader = MPSImageSobel(device: context.device)
+        shader.edgeMode = .clamp
         shader.encode(commandBuffer: commandBuffer, sourceTexture: input, destinationTexture: output)
     }
     
