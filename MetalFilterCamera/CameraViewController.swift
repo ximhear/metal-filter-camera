@@ -17,7 +17,7 @@ class CameraViewController: UIViewController {
 
     var session: MetalCameraSession?
     
-    var filterType: GImageFilterType = .mpsUnaryImageKernel(type: .sobel)
+    var filterType: GImageFilterType = .mpsUnaryImageKernel(type: .laplacian)
     var imageFilter: GImageFilter?
 
     var renderer: Renderer!
@@ -110,13 +110,15 @@ extension CameraViewController{
     @IBAction func pictureTaken(_ sender: Any) {
         GZLogFunc()
         
-        guard let t = renderer?.colorMap, let image = t.image, let oriented = getImageFrom(image: image) else {
+        guard let t = renderer?.colorMap, let image = UIImage.image(texture: t), let oriented = getImageFrom(image: image) else {
             return
         }
+        GZLogFunc(t)
         UIImageWriteToSavedPhotosAlbum(oriented, self, #selector(finishWriteImage(_:didFinishSavingWithError:contextInfo:)), nil)
     }
     
     @objc private func finishWriteImage(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
+        GZLogFunc(error)
     }
     
     @IBAction func sliderValueChanged(_ sender: Any) {
@@ -155,6 +157,7 @@ extension CameraViewController{
                 self.changeSliderSetting()
             }))
         }
+        alert.addAction(UIAlertAction(title: "취소", style: .default, handler: nil))
 
         self.present(alert, animated: true, completion: nil)
     }
@@ -353,7 +356,7 @@ extension MTLTexture {
         // read texture as byte array
         let rowBytes = self.width * 4
         let length = rowBytes * self.height
-        let bgraBytes = [UInt8](repeating: 0, count: length)
+        let bgraBytes = [UInt8](repeating: 255, count: length)
         let region = MTLRegionMake2D(0, 0, self.width, self.height)
         self.getBytes(UnsafeMutableRawPointer(mutating: bgraBytes), bytesPerRow: rowBytes, from: region, mipmapLevel: 0)
         

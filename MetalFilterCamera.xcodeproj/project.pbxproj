@@ -138,22 +138,22 @@
 		ECFE60162289424F006AF284 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
+				ECFE60262289424F006AF284 /* GImageFilterType.swift */,
+				ECFE60212289424F006AF284 /* GMPSUnaryImageFilterType.swift */,
+				ECFE60202289424F006AF284 /* BnaryImageFilterType.swift */,
+				ECFE601A2289424F006AF284 /* GMPSUnaryImageFilter.swift */,
 				ECFE60172289424F006AF284 /* GImageFilter.swift */,
 				ECFE60182289424F006AF284 /* GColorGBRFilter.swift */,
 				ECFE60192289424F006AF284 /* GSaturationAdjustmentFilter.swift */,
-				ECFE601A2289424F006AF284 /* GMPSUnaryImageFilter.swift */,
 				ECFE601B2289424F006AF284 /* GSepiaFilter.swift */,
 				ECFE601C2289424F006AF284 /* GContext.swift */,
 				ECFE601D2289424F006AF284 /* GPixellationFilter.swift */,
 				ECFE601E2289424F006AF284 /* GRotationFilter.swift */,
 				ECFE601F2289424F006AF284 /* MainBundleTextureProvider.swift */,
-				ECFE60202289424F006AF284 /* BnaryImageFilterType.swift */,
-				ECFE60212289424F006AF284 /* GMPSUnaryImageFilterType.swift */,
 				ECFE60222289424F006AF284 /* BinaryImageFilter.swift */,
 				ECFE60232289424F006AF284 /* GLuminanceFilter.swift */,
 				ECFE60242289424F006AF284 /* GGaussianBlur2DFilter.swift */,
 				ECFE60252289424F006AF284 /* GTextureProvider.swift */,
-				ECFE60262289424F006AF284 /* GImageFilterType.swift */,
 				ECFE60272289424F006AF284 /* GNormalMapFilter.swift */,
 				ECFE603D22894ED1006AF284 /* FilterShaders.metal */,
 			);
