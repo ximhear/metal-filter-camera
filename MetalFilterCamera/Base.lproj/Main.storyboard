@@ -68,13 +68,33 @@
                                     <action selector="sliderValueChanged:" destination="BV1-FR-VrT" eventType="valueChanged" id="dl1-dL-N69"/>
                                 </connections>
                             </slider>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qv4-gB-1Eg">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="찰칵" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2s-T3-1Hn">
+                                        <rect key="frame" x="178.5" y="428.5" width="57.5" height="39.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                        <color key="textColor" red="0.97934550050000002" green="0.56244248631690985" blue="0.61528161680127758" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="P2s-T3-1Hn" firstAttribute="centerX" secondItem="Qv4-gB-1Eg" secondAttribute="centerX" id="9qG-cj-WuS"/>
+                                    <constraint firstItem="P2s-T3-1Hn" firstAttribute="centerY" secondItem="Qv4-gB-1Eg" secondAttribute="centerY" id="lza-Br-aLW"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6ma-XG-XtK" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="5iJ-io-BH2"/>
                             <constraint firstItem="rZh-zQ-HcR" firstAttribute="bottom" secondItem="6ma-XG-XtK" secondAttribute="bottom" constant="20" id="5w0-US-gXX"/>
+                            <constraint firstItem="Qv4-gB-1Eg" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" id="CKj-Zq-ZEv"/>
+                            <constraint firstAttribute="bottom" secondItem="Qv4-gB-1Eg" secondAttribute="bottom" id="DFs-8E-BNv"/>
+                            <constraint firstAttribute="trailing" secondItem="Qv4-gB-1Eg" secondAttribute="trailing" id="IDJ-LM-0VD"/>
                             <constraint firstItem="ZHZ-uu-hpZ" firstAttribute="centerY" secondItem="6ma-XG-XtK" secondAttribute="centerY" id="LgZ-tL-4Xz"/>
                             <constraint firstItem="6ma-XG-XtK" firstAttribute="top" secondItem="KSc-Iz-97E" secondAttribute="bottom" constant="44" id="TCr-u4-98o"/>
+                            <constraint firstItem="Qv4-gB-1Eg" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" id="cRr-fK-pR5"/>
                             <constraint firstItem="KSc-Iz-97E" firstAttribute="leading" secondItem="rZh-zQ-HcR" secondAttribute="leading" constant="32" id="f5f-vt-ymD"/>
                             <constraint firstItem="ZHZ-uu-hpZ" firstAttribute="leading" secondItem="rZh-zQ-HcR" secondAttribute="leading" constant="8" id="fJ2-W9-tat"/>
                             <constraint firstItem="6ma-XG-XtK" firstAttribute="leading" secondItem="ZHZ-uu-hpZ" secondAttribute="trailing" constant="8" id="fSh-MG-GIn"/>
@@ -86,6 +106,7 @@
                     </view>
                     <connections>
                         <outlet property="filterLabel" destination="UEM-iY-S1W" id="JW6-vM-wzb"/>
+                        <outlet property="loading" destination="Qv4-gB-1Eg" id="dz3-Hb-Fsm"/>
                         <outlet property="slider" destination="KSc-Iz-97E" id="3Bi-mc-vNp"/>
                     </connections>
                 </viewController>

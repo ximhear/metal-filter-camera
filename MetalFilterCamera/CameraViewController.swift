@@ -14,6 +14,7 @@ class CameraViewController: UIViewController {
 
     @IBOutlet weak var slider:  UISlider!
     @IBOutlet weak var filterLabel:  UILabel!
+    @IBOutlet weak var loading:  UIView!
 
     var session: MetalCameraSession?
     
@@ -32,6 +33,7 @@ class CameraViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        loading.isHidden = true
         guard let mtkView = view as? MTKView else {
             print("View of Gameview controller is not an MTKView")
             return
@@ -115,18 +117,27 @@ extension CameraViewController{
     @IBAction func pictureTaken(_ sender: Any) {
         GZLogFunc()
         
-        let start = Date().timeIntervalSince1970
-//        guard let t = renderer?.colorMap, let image = UIImage.image(texture: t), let oriented = getImageFrom(image: image) else {
-        guard let t = renderer?.colorMap, let image = t.image, let oriented = getImageFrom(image: image) else {
-            return
+        loading.isHidden = false
+        DispatchQueue.global().async {[weak self] in
+            guard let welf = self else {
+                DispatchQueue.main.async {[weak self] in self?.loading.isHidden = true }
+                return
+            }
+//            guard let t = welf.renderer?.colorMap, let image = UIImage.image(texture: t), let oriented = welf.getImageFrom(image: image) else {
+//            DispatchQueue.main.async {[weak self] in self?.loading.isHidden = true }
+//                return
+//            }
+            guard let t = welf.renderer?.colorMap, let image = t.image, let oriented = welf.getImageFrom(image: image) else {
+                DispatchQueue.main.async {[weak self] in self?.loading.isHidden = true }
+                return
+            }
+            UIImageWriteToSavedPhotosAlbum(oriented, welf, #selector(welf.finishWriteImage(_:didFinishSavingWithError:contextInfo:)), nil)
         }
-        let end = Date().timeIntervalSince1970
-        GZLogFunc("duration : \(end - start)")
-        UIImageWriteToSavedPhotosAlbum(oriented, self, #selector(finishWriteImage(_:didFinishSavingWithError:contextInfo:)), nil)
     }
     
     @objc private func finishWriteImage(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
         GZLogFunc(error)
+        loading.isHidden = true
     }
     
     @IBAction func sliderValueChanged(_ sender: Any) {
