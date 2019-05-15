@@ -33,15 +33,13 @@ extension MTLTexture {
         // use Accelerate framework to convert from BGRA to RGBA
         var bgraBuffer = vImage_Buffer(data: UnsafeMutableRawPointer(mutating: bgraBytes),
                                        height: vImagePixelCount(self.height), width: vImagePixelCount(self.width), rowBytes: rowBytes)
-        var rgbaBytes = [UInt8](repeating: 0, count: length)
+        let rgbaBytes = [UInt8](repeating: 0, count: length)
         var rgbaBuffer = vImage_Buffer(data: UnsafeMutableRawPointer(mutating: rgbaBytes),
                                        height: vImagePixelCount(self.height), width: vImagePixelCount(self.width), rowBytes: rowBytes)
         let map: [UInt8] = [2, 1, 0, 3]
-        vImagePermuteChannels_ARGB8888(&bgraBuffer, &rgbaBuffer, map, 0)
-        
-        for i in 0..<rgbaBytes.count/4 {
-            rgbaBytes[i * 4 + 3] = 255
-        }
+//        vImagePermuteChannels_ARGB8888(&bgraBuffer, &rgbaBuffer, map, 0)
+        // gzonelee, laplacian일 경우 alpha값이 항상 0이라서 강제로 255로 해준다.
+        vImagePermuteChannelsWithMaskedInsert_ARGB8888(&bgraBuffer, &rgbaBuffer, map, 0x1, [0,0,0,255], 0)
         
         // flipping image virtically
         //        let flippedBytes = bgraBytes // share the buffer

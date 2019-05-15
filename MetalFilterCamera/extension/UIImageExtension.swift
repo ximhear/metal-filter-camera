@@ -187,6 +187,7 @@ extension UIImage {
         let h = texture.height
         var bytes = texture.toUInt8Array(width: w, height: h, featureChannels: 4)
         
+        // gzonelee, laplacian일 경우 alpha값이 항상 0이라서 강제로 255로 해준다.
         for i in 0..<bytes.count/4 {
             bytes[i * 4 + 3] = 255
             bytes.swapAt(i*4 + 0, i*4 + 2)
