@@ -13,10 +13,15 @@ import MetalKit
 class CameraViewController: UIViewController {
 
     @IBOutlet weak var slider:  UISlider!
+    @IBOutlet weak var filterLabel:  UILabel!
 
     var session: MetalCameraSession?
     
-    var filterType: GImageFilterType = .mpsUnaryImageKernel(type: .laplacian)
+    var filterType: GImageFilterType = .mpsUnaryImageKernel(type: .laplacian) {
+        didSet {
+            filterLabel.text = filterType.name
+        }
+    }
     var imageFilter: GImageFilter?
 
     var renderer: Renderer!
@@ -52,6 +57,7 @@ class CameraViewController: UIViewController {
 
         mtkView.delegate = renderer
         
+        filterType = .mpsUnaryImageKernel(type: .laplacian)
         imageFilter = filterType.createImageFilter(context: context)
         changeSliderSetting()
         session = MetalCameraSession(delegate: self)

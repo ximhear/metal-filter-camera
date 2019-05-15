@@ -18,6 +18,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZHZ-uu-hpZ">
+                                <rect key="frame" x="8" y="808.5" width="167.5" height="26"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2YM-sj-AjX">
+                                        <rect key="frame" x="61" y="0.0" width="45.5" height="26"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UEM-iY-S1W">
+                                                <rect key="frame" x="4" y="4" width="37.5" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="0.49871575342465752" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="UEM-iY-S1W" secondAttribute="bottom" constant="4" id="dup-bb-EVy"/>
+                                            <constraint firstItem="UEM-iY-S1W" firstAttribute="top" secondItem="2YM-sj-AjX" secondAttribute="top" constant="4" id="gk7-gj-xFH"/>
+                                            <constraint firstItem="UEM-iY-S1W" firstAttribute="leading" secondItem="2YM-sj-AjX" secondAttribute="leading" constant="4" id="h1G-HG-Gea"/>
+                                            <constraint firstAttribute="trailing" secondItem="UEM-iY-S1W" secondAttribute="trailing" constant="4" id="k7j-dI-uLG"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="2YM-sj-AjX" firstAttribute="top" secondItem="ZHZ-uu-hpZ" secondAttribute="top" id="Fgc-VV-m1f"/>
+                                    <constraint firstItem="2YM-sj-AjX" firstAttribute="centerX" secondItem="ZHZ-uu-hpZ" secondAttribute="centerX" id="GLs-9T-ZM6"/>
+                                    <constraint firstAttribute="bottom" secondItem="2YM-sj-AjX" secondAttribute="bottom" id="uyo-0h-eha"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ma-XG-XtK">
                                 <rect key="frame" x="183.5" y="801" width="47" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -44,8 +73,11 @@
                         <constraints>
                             <constraint firstItem="6ma-XG-XtK" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="5iJ-io-BH2"/>
                             <constraint firstItem="rZh-zQ-HcR" firstAttribute="bottom" secondItem="6ma-XG-XtK" secondAttribute="bottom" constant="20" id="5w0-US-gXX"/>
+                            <constraint firstItem="ZHZ-uu-hpZ" firstAttribute="centerY" secondItem="6ma-XG-XtK" secondAttribute="centerY" id="LgZ-tL-4Xz"/>
                             <constraint firstItem="6ma-XG-XtK" firstAttribute="top" secondItem="KSc-Iz-97E" secondAttribute="bottom" constant="44" id="TCr-u4-98o"/>
                             <constraint firstItem="KSc-Iz-97E" firstAttribute="leading" secondItem="rZh-zQ-HcR" secondAttribute="leading" constant="32" id="f5f-vt-ymD"/>
+                            <constraint firstItem="ZHZ-uu-hpZ" firstAttribute="leading" secondItem="rZh-zQ-HcR" secondAttribute="leading" constant="8" id="fJ2-W9-tat"/>
+                            <constraint firstItem="6ma-XG-XtK" firstAttribute="leading" secondItem="ZHZ-uu-hpZ" secondAttribute="trailing" constant="8" id="fSh-MG-GIn"/>
                             <constraint firstItem="rZh-zQ-HcR" firstAttribute="trailing" secondItem="KSc-Iz-97E" secondAttribute="trailing" constant="32" id="ltO-pz-x0C"/>
                             <constraint firstItem="rZh-zQ-HcR" firstAttribute="trailing" secondItem="PEl-bj-6IR" secondAttribute="trailing" constant="16" id="mxG-Q2-Jc0"/>
                             <constraint firstItem="PEl-bj-6IR" firstAttribute="centerY" secondItem="6ma-XG-XtK" secondAttribute="centerY" id="txV-mL-o39"/>
@@ -53,6 +85,7 @@
                         <viewLayoutGuide key="safeArea" id="rZh-zQ-HcR"/>
                     </view>
                     <connections>
+                        <outlet property="filterLabel" destination="UEM-iY-S1W" id="JW6-vM-wzb"/>
                         <outlet property="slider" destination="KSc-Iz-97E" id="3Bi-mc-vNp"/>
                     </connections>
                 </viewController>
