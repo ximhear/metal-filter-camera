@@ -160,8 +160,17 @@ class GImageFilter: GTextureProvider, GTextureConsumer, GFilterValueSetter {
         
         let threadgroupCounts = MTLSizeMake(pipeline.threadExecutionWidth, pipeline.maxTotalThreadsPerThreadgroup/pipeline.threadExecutionWidth, 1)
         //        let threadgroupCounts = MTLSizeMake(8, 8, 1)
-        let threadgroups = MTLSizeMake(input0.width / threadgroupCounts.width, input0.height / threadgroupCounts.height, 1)
+        var width: Int = input0.width / threadgroupCounts.width
+        var height: Int = input0.height / threadgroupCounts.height
+        if input0.width % threadgroupCounts.width != 0 {
+            width += 1
+        }
+        if input0.height % threadgroupCounts.height != 0 {
+            height += 1
+        }
+        let threadgroups = MTLSizeMake(width, height, 1)
         
+
         let commandEncoder = commandBuffer.makeComputeCommandEncoder()
         commandEncoder?.setComputePipelineState(self.pipeline)
         commandEncoder?.setTexture(input0, index: 0)
@@ -180,7 +189,16 @@ class GImageFilter: GTextureProvider, GTextureConsumer, GFilterValueSetter {
         
         let threadgroupCounts = MTLSizeMake(pipeline.threadExecutionWidth, pipeline.maxTotalThreadsPerThreadgroup/pipeline.threadExecutionWidth, 1)
         //        let threadgroupCounts = MTLSizeMake(8, 8, 1)
-        let threadgroups = MTLSizeMake(input.width / threadgroupCounts.width, input.height / threadgroupCounts.height, 1)
+        
+        var width: Int = input.width / threadgroupCounts.width
+        var height: Int = input.height / threadgroupCounts.height
+        if input.width % threadgroupCounts.width != 0 {
+            width += 1
+        }
+        if input.height % threadgroupCounts.height != 0 {
+            height += 1
+        }
+        let threadgroups = MTLSizeMake(width, height, 1)
         
         let commandEncoder = commandBuffer.makeComputeCommandEncoder()
         commandEncoder?.setComputePipelineState(self.pipeline)

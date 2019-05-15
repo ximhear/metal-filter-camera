@@ -24,19 +24,19 @@ enum GImageFilterType {
     var name: String {
         switch self {
         case .gaussianBlur2D:
-            return "gaussianBlur2D"
+            return "GaussianBlur2D"
         case .saturationAdjustment:
-            return "saturationAdjustment"
+            return "SaturationAdjustment"
         case .rotation:
-            return "rotation"
+            return "Rotation"
         case .colorGBR:
-            return "colorGBR"
+            return "ColorGBR"
         case .sepia:
-            return "sepia"
+            return "Sepia"
         case .pixellation:
-            return "pixellation"
+            return "Pixellation"
         case .luminance:
-            return "luminance"
+            return "Luminance"
         case .normalMap:
             return "Normal Map"
         case .invert:

@@ -168,8 +168,8 @@
 				ECFE60242289424F006AF284 /* GGaussianBlur2DFilter.swift */,
 				ECFE60252289424F006AF284 /* GTextureProvider.swift */,
 				ECFE60272289424F006AF284 /* GNormalMapFilter.swift */,
-				ECFE603D22894ED1006AF284 /* FilterShaders.metal */,
 				ECEF3661228B8AF6007414A1 /* SimpleTextureProvider.swift */,
+				ECFE603D22894ED1006AF284 /* FilterShaders.metal */,
 			);
 			path = Filter;
 			sourceTree = "<group>";
