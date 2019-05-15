@@ -82,7 +82,10 @@ class GImageFilter: GTextureProvider, GTextureConsumer, GFilterValueSetter {
     }
     
     func applyFilter() {
-        var inputTexture = self.provider0.texture!
+        
+        guard var inputTexture = self.provider0.texture else {
+            return
+        }
 //        GZLogFunc(inputTexture)
         if self.filterType.inPlaceTexture == false {
             if self.internalTexture == nil ||
