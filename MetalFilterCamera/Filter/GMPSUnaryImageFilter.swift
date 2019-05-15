@@ -88,7 +88,7 @@ class GMPSUnaryImageFilter: GImageFilter {
 //        shader.bias = 0.1
         if let o = tempOutput {
             shader.encode(commandBuffer: commandBuffer, sourceTexture: input, destinationTexture: o)
-            let threshold = MPSImageThresholdBinary(device: context.device, thresholdValue: 0.02, maximumValue: 1, linearGrayColorTransform: nil)
+            let threshold = MPSImageThresholdBinary(device: context.device, thresholdValue: _value, maximumValue: 1, linearGrayColorTransform: nil)
             threshold.encode(commandBuffer: commandBuffer, sourceTexture: o, destinationTexture: finalOutput)
         }
         else {

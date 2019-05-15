@@ -217,7 +217,10 @@ extension CameraViewController{
             case .sobel:
                 slider.isHidden = true
             case .laplacian:
-                slider.isHidden = true
+                self.slider.value = 0.02
+                self.slider.minimumValue = 0.01
+                self.slider.maximumValue = 0.1
+                slider.isHidden = false
             case .gaussianBlur:
                 self.slider.value = 0
                 self.slider.minimumValue = 0
