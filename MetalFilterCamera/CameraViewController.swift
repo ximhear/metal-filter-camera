@@ -163,6 +163,7 @@ extension CameraViewController{
         objects.append(.mpsUnaryImageKernel(type: .sobel))
         objects.append(.mpsUnaryImageKernel(type: .laplacian))
         objects.append(.mpsUnaryImageKernel(type: .gaussianBlur))
+        objects.append(.mpsUnaryImageKernel(type: .emboss))
 //        objects.append(.mpsUnaryImageKernel(type: .gaussianPyramid))
 //        objects.append(.mpsUnaryImageKernel(type: .laplacianPyramid))
 //        objects.append(.binaryImageKernel(type: .oneStepLaplacianPyramid))
@@ -226,6 +227,8 @@ extension CameraViewController{
                 self.slider.minimumValue = 0
                 self.slider.maximumValue = 20
                 slider.isHidden = false
+            case .emboss:
+                slider.isHidden = true
             default:
                 slider.isHidden = true
             }

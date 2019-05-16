@@ -14,6 +14,7 @@ enum GMPSUnaryImageFilterType {
     case gaussianBlur
     case gaussianPyramid
     case laplacianPyramid
+    case emboss
     
     var name: String {
         switch self {
@@ -27,6 +28,8 @@ enum GMPSUnaryImageFilterType {
             return "MPS GaussianPyramid"
         case .laplacianPyramid:
             return "MPS LaplacianPyramid"
+        case .emboss:
+            return "Emboss"
         }
     }
     

@@ -38,6 +38,8 @@ class GMPSUnaryImageFilter: GImageFilter {
             gaussianPyramid(&input, finalOutput, commandBuffer)
         case .laplacianPyramid:
             laplacianPyramid(&input, tempOutput, finalOutput, commandBuffer)
+        case .emboss:
+            emboss(input, tempOutput, finalOutput, commandBuffer)
         }
     }
     
@@ -148,6 +150,12 @@ class GMPSUnaryImageFilter: GImageFilter {
         }
         
         GZLogFunc(finalOutput.mipmapLevelCount)
+    }
+
+    func emboss(_ input: MTLTexture, _ tempOutput: MTLTexture?, _ finalOutput: MTLTexture, _ commandBuffer: MTLCommandBuffer) {
+        let shader = MPSImageConvolution(device: context.device, kernelWidth: 3, kernelHeight: 3, weights: [-2, -1, 0, -1, 0, 1, 0, 1, 2])
+        shader.bias = 0.5
+        shader.encode(commandBuffer: commandBuffer, sourceTexture: input, destinationTexture: finalOutput)
     }
     
     func changeMapMap(level: Int, texture: MTLTexture, color: UIColor) {
