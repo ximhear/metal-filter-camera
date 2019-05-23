@@ -241,7 +241,7 @@ kernel void magnify_center(texture2d<float, access::read> inTexture [[texture(0)
     }
     else if (distance <= centerMinDimension) {
         float m = uniforms.minRadius * 2.0 / 3.0;
-        float n = uniforms.minRadius * 1.0 / 3.0 + (uniforms.radius - uniforms.minRadius);
+        float n = uniforms.minRadius * 1.0 / 3.0 + (uniforms.radius - uniforms.minRadius) + pow(1 - distance / centerMinDimension, 2);
         float dx = (gid.x * m + centerX * n) / (m + n);
         float dy = (gid.y * m + centerY * n) / (m + n);
         uint2 textureIndex(dx, dy);
