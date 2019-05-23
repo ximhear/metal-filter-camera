@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ECD1D57C229638DE00C30A10 /* GCenterMagnificationFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD1D57B229638DE00C30A10 /* GCenterMagnificationFilter.swift */; };
 		ECEF3662228B8AF6007414A1 /* SimpleTextureProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEF3661228B8AF6007414A1 /* SimpleTextureProvider.swift */; };
 		ECEF3669228B8C06007414A1 /* UIImage-extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEF3666228B8C05007414A1 /* UIImage-extension.swift */; };
 		ECEF366A228B8C06007414A1 /* MTLTexture-extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEF3667228B8C05007414A1 /* MTLTexture-extension.swift */; };
@@ -43,6 +44,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		ECD1D57B229638DE00C30A10 /* GCenterMagnificationFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCenterMagnificationFilter.swift; sourceTree = "<group>"; };
 		ECEF3661228B8AF6007414A1 /* SimpleTextureProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTextureProvider.swift; sourceTree = "<group>"; };
 		ECEF3666228B8C05007414A1 /* UIImage-extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage-extension.swift"; sourceTree = "<group>"; };
 		ECEF3667228B8C05007414A1 /* MTLTexture-extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MTLTexture-extension.swift"; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				ECFE601C2289424F006AF284 /* GContext.swift */,
 				ECFE601D2289424F006AF284 /* GPixellationFilter.swift */,
 				ECFE601E2289424F006AF284 /* GRotationFilter.swift */,
+				ECD1D57B229638DE00C30A10 /* GCenterMagnificationFilter.swift */,
 				ECFE601F2289424F006AF284 /* MainBundleTextureProvider.swift */,
 				ECFE60222289424F006AF284 /* BinaryImageFilter.swift */,
 				ECFE60232289424F006AF284 /* GLuminanceFilter.swift */,
@@ -260,6 +263,7 @@
 				ECFE602D2289424F006AF284 /* GContext.swift in Sources */,
 				ECFE60302289424F006AF284 /* MainBundleTextureProvider.swift in Sources */,
 				ECFE602A2289424F006AF284 /* GSaturationAdjustmentFilter.swift in Sources */,
+				ECD1D57C229638DE00C30A10 /* GCenterMagnificationFilter.swift in Sources */,
 				ECFE601222890E9F006AF284 /* MetalCameraSessionTypes.swift in Sources */,
 				ECFE60292289424F006AF284 /* GColorGBRFilter.swift in Sources */,
 				ECFE602E2289424F006AF284 /* GPixellationFilter.swift in Sources */,

@@ -18,6 +18,7 @@ enum GImageFilterType {
     case luminance
     case normalMap
     case invert
+    case centerMagnification
     case mpsUnaryImageKernel(type: GMPSUnaryImageFilterType)
     case binaryImageKernel(type: BinaryImageFilterType)
 
@@ -41,6 +42,8 @@ enum GImageFilterType {
             return "Normal Map"
         case .invert:
             return "Invert"
+        case .centerMagnification:
+            return "Magnify Center"
         case .mpsUnaryImageKernel(let type):
             return type.name
         case .binaryImageKernel(let type):
@@ -69,6 +72,8 @@ enum GImageFilterType {
             return GNormalMapFilter(context: context, filterType: self)
         case .invert:
             return GImageFilter(functionName: "invert", context: context, filterType: self)
+        case .centerMagnification:
+            return GCenterMagnificationFilter(context: context, filterType: self)
         case .mpsUnaryImageKernel(let type):
             return GMPSUnaryImageFilter(type: type, context: context, filterType: self)
         case .binaryImageKernel(let type):

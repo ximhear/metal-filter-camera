@@ -160,6 +160,7 @@ extension CameraViewController{
         objects.append(.luminance)
         objects.append(.normalMap)
         objects.append(.invert)
+        objects.append(.centerMagnification)
         objects.append(.mpsUnaryImageKernel(type: .sobel))
         objects.append(.mpsUnaryImageKernel(type: .laplacian))
         objects.append(.mpsUnaryImageKernel(type: .gaussianBlur))
@@ -213,6 +214,10 @@ extension CameraViewController{
             slider.isHidden = true
         case .invert:
             slider.isHidden = true
+        case .centerMagnification:
+            self.slider.value = 1
+            self.slider.minimumValue = 0.5
+            self.slider.maximumValue = 1
         case .mpsUnaryImageKernel(let type):
             switch type {
             case .sobel:

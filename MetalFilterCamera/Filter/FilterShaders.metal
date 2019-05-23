@@ -216,3 +216,32 @@ kernel void oneStepLaplacianPyramid(texture2d<float, access::read> inTexture0 [[
 //    outTexture.write(outColor, gid);
 }
 
+struct CenterMagnificationUniforms {
+    float width;
+    float height;
+    float radius;
+};
+
+kernel void magnify_center(texture2d<float, access::read> inTexture [[texture(0)]],
+                                   texture2d<float, access::write> outTexture [[texture(1)]],
+                                   constant CenterMagnificationUniforms &uniforms [[buffer(0)]],
+                                   uint2 gid [[thread_position_in_grid]])
+{
+    float centerX = uniforms.width/2.0;
+    float centerY = uniforms.height/2.0;
+    
+    float modX = (gid.x - centerX);
+    float modY = (centerY - gid.y);
+    float distance = sqrt(modX*modX + modY*modY);
+    float centerMinDimension = min(centerX, centerY) * uniforms.radius;
+    if (distance <= centerMinDimension) {
+        uint2 textureIndex((gid.x * 2.0 + centerX) / 3.0, (gid.y * 2.0 + centerY) / 3.0);
+        float4 color = inTexture.read(textureIndex).rgba;
+        outTexture.write(float4(color.rgb, 1), gid);
+    }
+    else {
+        float4 color = inTexture.read(gid).rgba;
+        outTexture.write(float4(color.rgb, 1), gid);
+    }
+}
+
