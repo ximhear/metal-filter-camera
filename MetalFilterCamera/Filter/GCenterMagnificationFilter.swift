@@ -12,6 +12,7 @@ import Metal
 struct CenterMagnificationUniforms {
     var width: Float
     var height: Float
+    var minRadius: Float
     var radius: Float
 }
 
@@ -43,6 +44,7 @@ class GCenterMagnificationFilter: GImageFilter {
         uniforms[0].width = Float(self.provider0.texture!.width)
         uniforms[0].height = Float(self.provider0.texture!.height)
         uniforms[0].radius = radius;
+        uniforms[0].minRadius = 0.5;
         commandEncoder.setBuffer(self.uniformBuffer, offset: 0, index: 0)
     }
     

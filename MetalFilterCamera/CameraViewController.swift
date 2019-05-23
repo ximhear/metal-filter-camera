@@ -59,7 +59,7 @@ class CameraViewController: UIViewController {
 
         mtkView.delegate = renderer
         
-        filterType = .mpsUnaryImageKernel(type: .laplacian)
+        filterType = .centerMagnification// .mpsUnaryImageKernel(type: .laplacian)
         imageFilter = filterType.createImageFilter(context: context)
         changeSliderSetting()
         session = MetalCameraSession(delegate: self)
