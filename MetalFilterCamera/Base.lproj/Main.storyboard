@@ -62,6 +62,25 @@
                                     <action selector="filterSelectionClicked:" destination="BV1-FR-VrT" eventType="touchUpInside" id="l0W-UM-mNr"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w2n-1A-430">
+                                <rect key="frame" x="366" y="52" width="40" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p55-6n-UVb">
+                                        <rect key="frame" x="4" y="4" width="32" height="32"/>
+                                        <state key="normal" image="camera"/>
+                                        <connections>
+                                            <action selector="switchCameraClickedWithSender:" destination="BV1-FR-VrT" eventType="touchUpInside" id="rsa-yj-EIv"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="p55-6n-UVb" secondAttribute="bottom" constant="4" id="1kw-Cr-kKR"/>
+                                    <constraint firstAttribute="trailing" secondItem="p55-6n-UVb" secondAttribute="trailing" constant="4" id="Cil-V3-mxr"/>
+                                    <constraint firstItem="p55-6n-UVb" firstAttribute="top" secondItem="w2n-1A-430" secondAttribute="top" constant="4" id="DkL-Gh-FSK"/>
+                                    <constraint firstItem="p55-6n-UVb" firstAttribute="leading" secondItem="w2n-1A-430" secondAttribute="leading" constant="4" id="eiA-1W-wgQ"/>
+                                </constraints>
+                            </view>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="KSc-Iz-97E">
                                 <rect key="frame" x="30" y="727" width="354" height="31"/>
                                 <connections>
@@ -87,12 +106,14 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="rZh-zQ-HcR" firstAttribute="trailing" secondItem="w2n-1A-430" secondAttribute="trailing" constant="8" id="0UW-OL-Efv"/>
                             <constraint firstItem="6ma-XG-XtK" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="5iJ-io-BH2"/>
                             <constraint firstItem="rZh-zQ-HcR" firstAttribute="bottom" secondItem="6ma-XG-XtK" secondAttribute="bottom" constant="20" id="5w0-US-gXX"/>
                             <constraint firstItem="Qv4-gB-1Eg" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" id="CKj-Zq-ZEv"/>
                             <constraint firstAttribute="bottom" secondItem="Qv4-gB-1Eg" secondAttribute="bottom" id="DFs-8E-BNv"/>
                             <constraint firstAttribute="trailing" secondItem="Qv4-gB-1Eg" secondAttribute="trailing" id="IDJ-LM-0VD"/>
                             <constraint firstItem="ZHZ-uu-hpZ" firstAttribute="centerY" secondItem="6ma-XG-XtK" secondAttribute="centerY" id="LgZ-tL-4Xz"/>
+                            <constraint firstItem="w2n-1A-430" firstAttribute="top" secondItem="rZh-zQ-HcR" secondAttribute="top" constant="8" id="NSL-gz-2sJ"/>
                             <constraint firstItem="6ma-XG-XtK" firstAttribute="top" secondItem="KSc-Iz-97E" secondAttribute="bottom" constant="44" id="TCr-u4-98o"/>
                             <constraint firstItem="Qv4-gB-1Eg" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" id="cRr-fK-pR5"/>
                             <constraint firstItem="KSc-Iz-97E" firstAttribute="leading" secondItem="rZh-zQ-HcR" secondAttribute="leading" constant="32" id="f5f-vt-ymD"/>
@@ -114,4 +135,7 @@
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="camera" width="32" height="32"/>
+    </resources>
 </document>

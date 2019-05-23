@@ -373,5 +373,62 @@ extension MetalCameraSession: AVCaptureVideoDataOutputSampleBufferDelegate {
     }
 
 #endif
+
+    func switchCamera() {
+        //Change camera source
+        let session = captureSession
+        //Remove existing input
+        guard let currentCameraInput: AVCaptureInput = session.inputs.first else {
+            return
+        }
+        
+        //Get new input
+        var nextCamera: AVCaptureDevice?
+        if let input = currentCameraInput as? AVCaptureDeviceInput {
+            if (input.device.position == .back) {
+                nextCamera = cameraWithPosition(position: .front)
+            } else {
+                nextCamera = cameraWithPosition(position: .back)
+            }
+        }
+        
+        guard let newCamera = nextCamera else {
+            return
+        }
+        
+        //Indicate that some changes will be made to the session
+        session.beginConfiguration()
+        session.removeInput(currentCameraInput)
+        
+        //Add input to session
+        var err: NSError?
+        var newVideoInput: AVCaptureDeviceInput!
+        do {
+            newVideoInput = try AVCaptureDeviceInput(device: newCamera)
+        } catch let err1 as NSError {
+            err = err1
+            newVideoInput = nil
+        }
+        
+        if newVideoInput == nil || err != nil {
+            GZLogFunc("Error creating capture device input: \(err?.localizedDescription)")
+        } else {
+            session.addInput(newVideoInput)
+        }
+        
+        //Commit all the configuration changes at once
+        session.commitConfiguration()
+    }
     
+    // Find a camera with the specified AVCaptureDevicePosition, returning nil if one is not found
+    func cameraWithPosition(position: AVCaptureDevice.Position) -> AVCaptureDevice? {
+        let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .unspecified)
+        for device in discoverySession.devices {
+            if device.position == position {
+                return device
+            }
+        }
+        
+        return nil
+    }
 }

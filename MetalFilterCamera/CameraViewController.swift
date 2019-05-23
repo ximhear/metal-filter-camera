@@ -361,3 +361,11 @@ extension CameraViewController{
         return orientedImage
     }
 }
+
+extension CameraViewController {
+
+    @IBAction func switchCameraClicked(sender: Any) {
+        GZLogFunc()
+        session?.switchCamera()
+    }
+}
