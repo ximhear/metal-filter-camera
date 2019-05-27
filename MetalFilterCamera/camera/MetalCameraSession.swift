@@ -353,9 +353,9 @@ extension MetalCameraSession: AVCaptureVideoDataOutputSampleBufferDelegate {
         case .portraitUpsideDown:
             return .portraitUpsideDown
         case .landscapeLeft:
-            return .landscapeLeft
-        case .landscapeRight:
             return .landscapeRight
+        case .landscapeRight:
+            return .landscapeLeft
         default:
             return nil
         }
