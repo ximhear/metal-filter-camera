@@ -302,16 +302,32 @@ kernel void slim(texture2d<float, access::read> inTexture [[texture(0)]],
     float centerMinDimension = centerX * uniforms.radius;
     float m = 2;
     float n = 1;
-    float dx = (gid.x * m - centerX * n) / (m - n);
-    float ddd = abs(dx - centerX);
-    if (ddd <= centerMinDimension && uniforms.radius > 0) {
-        uint2 textureIndex(dx, gid.y);
-//        uint2 textureIndex(gid.y, dx);
+    float limitX = centerMinDimension - n / m * centerMinDimension;
+    if (uniforms.radius > 0 && limitX >= fabs(gid.x - centerX)) {
+        float factor = centerMinDimension / limitX;
+        uint2 textureIndex(centerX + (gid.x - centerX) * factor, gid.y);
         float4 color = inTexture.read(textureIndex).rgba;
-        outTexture.write(float4(ddd / centerX, 0, 0, 1), gid);
+        outTexture.write(float4(color.rgb, 1), gid);
+//        if (gid.x - centerX > 0) {
+//        }
+//        else {
+//            uint2 textureIndex(centerX - (centerX - gid.x) * factor, gid.y);
+//            float4 color = inTexture.read(textureIndex).rgba;
+//            outTexture.write(float4(color.rgb, 1), gid);
+//        }
     }
     else {
-        float4 color = inTexture.read(gid).rgba;
-        outTexture.write(float4(color.rgb, 1), gid);
+        float factor = (centerX - centerMinDimension) / (centerX - limitX);
+        if (gid.x - centerX > 0) {
+            uint2 textureIndex(2* centerX - (2* centerX - gid.x) * factor, gid.y);
+            float4 color = inTexture.read(textureIndex).rgba;
+            outTexture.write(float4(color.rgb, 1), gid);
+//            outTexture.write(float4(1, 0, 0, 1), gid);
+        }
+        else {
+            uint2 textureIndex(gid.x * factor, gid.y);
+            float4 color = inTexture.read(textureIndex).rgba;
+            outTexture.write(float4(color.rgb, 1), gid);
+        }
     }
 }
