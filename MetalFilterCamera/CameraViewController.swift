@@ -229,7 +229,7 @@ extension CameraViewController{
         case .slimming:
             self.slider.value = 0.75
             self.slider.minimumValue = 0
-            self.slider.maximumValue = 1
+            self.slider.maximumValue = 0.9
         case .mpsUnaryImageKernel(let type):
             switch type {
             case .sobel:

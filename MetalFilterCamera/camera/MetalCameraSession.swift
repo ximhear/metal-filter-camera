@@ -419,7 +419,7 @@ extension MetalCameraSession: AVCaptureVideoDataOutputSampleBufferDelegate {
         }
         
         //Indicate that some changes will be made to the session
-        session.beginConfiguration()
+//        session.beginConfiguration()
         session.removeInput(currentCameraInput)
         
         //Add input to session
@@ -439,7 +439,7 @@ extension MetalCameraSession: AVCaptureVideoDataOutputSampleBufferDelegate {
         }
         
         //Commit all the configuration changes at once
-        session.commitConfiguration()
+//        session.commitConfiguration()
     }
     
     // Find a camera with the specified AVCaptureDevicePosition, returning nil if one is not found
