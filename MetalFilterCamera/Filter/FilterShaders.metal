@@ -306,23 +306,25 @@ kernel void slim(texture2d<float, access::sample> inTexture [[texture(0)]],
     if (uniforms.radius > 0 && limitX >= fabs(gid.x - centerX)) {
         float factor = centerMinDimension / limitX;
         uint2 textureIndex(centerX + (gid.x - centerX) * factor, gid.y);
-        float4 color = inTexture.read(textureIndex).rgba;
-        outTexture.write(float4(color.rgb, 1), gid);
-//        if (gid.x - centerX > 0) {
-//        }
-//        else {
-//            uint2 textureIndex(centerX - (centerX - gid.x) * factor, gid.y);
-//            float4 color = inTexture.read(textureIndex).rgba;
-//            outTexture.write(float4(color.rgb, 1), gid);
-//        }
+        if (gid.x - centerX > 0) {
+            int width = inTexture.get_width();
+            int height = inTexture.get_height();
+            float2 coordinates = float2(textureIndex) / float2(width, height);
+            
+            constexpr sampler textureSampler(coord::normalized,
+                                             address::clamp_to_edge);
+            float4 color = inTexture.sample(textureSampler, coordinates);
+            outTexture.write(color, gid);
+        }
+        else {
+            float4 color = inTexture.read(textureIndex).rgba;
+            outTexture.write(float4(color.rgb, 1), gid);
+        }
     }
     else {
         float factor = (centerX - centerMinDimension) / (centerX - limitX);
         if (gid.x - centerX > 0) {
             uint2 textureIndex(2* centerX - (2* centerX - gid.x) * factor, gid.y);
-
-//            float4 color = inTexture.read(textureIndex).rgba;
-//            outTexture.write(float4(color.rgb, 1), gid);
             
             int width = inTexture.get_width();
             int height = inTexture.get_height();
