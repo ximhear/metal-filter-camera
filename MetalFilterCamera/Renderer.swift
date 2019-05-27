@@ -204,6 +204,7 @@ class Renderer: NSObject, MTKViewDelegate {
         else if deviceOrientation.rawValue == 4 {
             degrees = 180
         }
+        degrees = 0
         let radians = radians_from_degrees(degrees)
         let modelMatrix = matrix4x4_rotation(radians: radians, axis: float3(0, 0, 1))
 //        let modelMatrix = matrix_identity_float4x4

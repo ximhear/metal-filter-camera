@@ -8,6 +8,7 @@
 
 import UIKit
 import MetalKit
+import AVFoundation
 
 // Our iOS specific view controller
 class CameraViewController: UIViewController {
@@ -78,6 +79,7 @@ class CameraViewController: UIViewController {
 
 // MARK: - MetalCameraSessionDelegate
 extension CameraViewController: MetalCameraSessionDelegate {
+    
     func metalCameraSession(_ session: MetalCameraSession, didReceiveFrameAsTextures textures: [MTLTexture], withTimestamp timestamp: Double) {
         if UIDevice.current.orientation.isValidInterfaceOrientation {
             
@@ -280,6 +282,9 @@ extension CameraViewController{
     }
     
     func createMatchingBackingDataWithImage1(imageRef: CGImage?, orienation: UIImage.Orientation) -> CGImage? {
+        return imageRef
+        
+        
         var orientedImage: CGImage?
         
         if let imageRef = imageRef {

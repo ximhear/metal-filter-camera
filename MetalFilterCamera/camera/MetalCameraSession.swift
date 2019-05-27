@@ -8,6 +8,7 @@
 
 import AVFoundation
 import Metal
+import UIKit
 
 /**
  *  A protocol for a delegate that may be notified about the capture session events.
@@ -343,9 +344,30 @@ extension MetalCameraSession: AVCaptureVideoDataOutputSampleBufferDelegate {
         
         return (Double)(time.value) / (Double)(time.timescale);
     }
-    
+
+    func frameOrientation(deviceOrientation: UIDeviceOrientation) -> AVCaptureVideoOrientation? {
+        
+        switch deviceOrientation {
+        case .portrait:
+            return .portrait
+        case .portraitUpsideDown:
+            return .portraitUpsideDown
+        case .landscapeLeft:
+            return .landscapeLeft
+        case .landscapeRight:
+            return .landscapeRight
+        default:
+            return nil
+        }
+        
+    }
+
     public func captureOutput(_ captureOutput: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         do {
+            
+            if let o = frameOrientation(deviceOrientation: UIDevice.current.orientation) {
+                connection.videoOrientation = o
+            }
             var textures: [MTLTexture]!
             
             switch pixelFormat {
