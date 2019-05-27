@@ -59,7 +59,7 @@ class CameraViewController: UIViewController {
 
         mtkView.delegate = renderer
         
-        filterType = .centerMagnification// .mpsUnaryImageKernel(type: .laplacian)
+        filterType = .slimming// .mpsUnaryImageKernel(type: .laplacian)
         imageFilter = filterType.createImageFilter(context: context)
         changeSliderSetting()
         session = MetalCameraSession(delegate: self)
@@ -161,6 +161,8 @@ extension CameraViewController{
         objects.append(.normalMap)
         objects.append(.invert)
         objects.append(.centerMagnification)
+        objects.append(.swellingUp)
+        objects.append(.slimming)
         objects.append(.mpsUnaryImageKernel(type: .sobel))
         objects.append(.mpsUnaryImageKernel(type: .laplacian))
         objects.append(.mpsUnaryImageKernel(type: .gaussianBlur))
@@ -215,8 +217,16 @@ extension CameraViewController{
         case .invert:
             slider.isHidden = true
         case .centerMagnification:
-            self.slider.value = 1
+            self.slider.value = 0.75
             self.slider.minimumValue = 0.5
+            self.slider.maximumValue = 1
+        case .swellingUp:
+            self.slider.value = 0.75
+            self.slider.minimumValue = 0.5
+            self.slider.maximumValue = 1
+        case .slimming:
+            self.slider.value = 0.75
+            self.slider.minimumValue = 0
             self.slider.maximumValue = 1
         case .mpsUnaryImageKernel(let type):
             switch type {

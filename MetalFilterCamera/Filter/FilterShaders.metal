@@ -254,3 +254,64 @@ kernel void magnify_center(texture2d<float, access::read> inTexture [[texture(0)
     }
 }
 
+kernel void magnify_weighted_center(texture2d<float, access::read> inTexture [[texture(0)]],
+                           texture2d<float, access::write> outTexture [[texture(1)]],
+                           constant CenterMagnificationUniforms &uniforms [[buffer(0)]],
+                           uint2 gid [[thread_position_in_grid]])
+{
+    float centerX = uniforms.width/2.0;
+    float centerY = uniforms.height/2.0;
+    
+    float modX = (gid.x - centerX);
+    float modY = (centerY - gid.y);
+    float distance = sqrt(modX*modX + modY*modY);
+    float centerMinDimension = min(centerX, centerY) * uniforms.radius;
+//    if (distance <= centerMinDimension && distance >= centerMinDimension - 5) {
+//        float4 color = float4(1, 0, 0, 1);
+//        outTexture.write(color, gid);
+//    }
+//    else
+    if (distance <= centerMinDimension) {
+        float x = modX / centerMinDimension;
+        float y = modY / centerMinDimension;
+        float d = sqrt(x*x + y*y);
+//        float m = d * d;
+//        float n = (1 - m);
+        float m = sin(d * PI / 2.0);
+        float n = 1 - m;
+        float dx = (gid.x * m + centerX * n) / (m + n);
+        float dy = (gid.y * m + centerY * n) / (m + n);
+        uint2 textureIndex(dx, dy);
+        float4 color = inTexture.read(textureIndex).rgba;
+        outTexture.write(float4(color.rgb, 1), gid);
+    }
+    else {
+        float4 color = inTexture.read(gid).rgba;
+        outTexture.write(float4(color.rgb, 1), gid);
+    }
+}
+
+
+kernel void slim(texture2d<float, access::read> inTexture [[texture(0)]],
+                                    texture2d<float, access::write> outTexture [[texture(1)]],
+                                    constant CenterMagnificationUniforms &uniforms [[buffer(0)]],
+                                    uint2 gid [[thread_position_in_grid]])
+{
+    float centerX = uniforms.width / 2.0;
+    
+    float centerMinDimension = centerX * uniforms.radius;
+    float m = 2;
+    float n = 1;
+    float dx = (gid.x * m - centerX * n) / (m - n);
+    float ddd = abs(dx - centerX);
+    if (ddd <= centerMinDimension && uniforms.radius > 0) {
+        uint2 textureIndex(dx, gid.y);
+//        uint2 textureIndex(gid.y, dx);
+        float4 color = inTexture.read(textureIndex).rgba;
+        outTexture.write(float4(ddd / centerX, 0, 0, 1), gid);
+    }
+    else {
+        float4 color = inTexture.read(gid).rgba;
+        outTexture.write(float4(color.rgb, 1), gid);
+    }
+}
