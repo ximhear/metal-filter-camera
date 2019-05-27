@@ -292,7 +292,7 @@ kernel void magnify_weighted_center(texture2d<float, access::read> inTexture [[t
 }
 
 
-kernel void slim(texture2d<float, access::read> inTexture [[texture(0)]],
+kernel void slim(texture2d<float, access::sample> inTexture [[texture(0)]],
                                     texture2d<float, access::write> outTexture [[texture(1)]],
                                     constant CenterMagnificationUniforms &uniforms [[buffer(0)]],
                                     uint2 gid [[thread_position_in_grid]])
@@ -320,9 +320,18 @@ kernel void slim(texture2d<float, access::read> inTexture [[texture(0)]],
         float factor = (centerX - centerMinDimension) / (centerX - limitX);
         if (gid.x - centerX > 0) {
             uint2 textureIndex(2* centerX - (2* centerX - gid.x) * factor, gid.y);
-            float4 color = inTexture.read(textureIndex).rgba;
-            outTexture.write(float4(color.rgb, 1), gid);
-//            outTexture.write(float4(1, 0, 0, 1), gid);
+
+//            float4 color = inTexture.read(textureIndex).rgba;
+//            outTexture.write(float4(color.rgb, 1), gid);
+            
+            int width = inTexture.get_width();
+            int height = inTexture.get_height();
+            float2 coordinates = float2(textureIndex) / float2(width, height);
+            
+            constexpr sampler textureSampler(coord::normalized,
+                                             address::clamp_to_edge);
+            float4 color = inTexture.sample(textureSampler, coordinates);
+            outTexture.write(color, gid);
         }
         else {
             uint2 textureIndex(gid.x * factor, gid.y);
