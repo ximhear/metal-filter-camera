@@ -342,3 +342,47 @@ kernel void slim(texture2d<float, access::sample> inTexture [[texture(0)]],
         }
     }
 }
+
+kernel void repeat(texture2d<float, access::read> inTexture [[texture(0)]],
+                   texture2d<float, access::write> outTexture [[texture(1)]],
+                   uint2 gid [[thread_position_in_grid]]) {
+    
+    uint cellWidth = inTexture.get_width() / 3;
+    uint cellHeight = inTexture.get_height() / 3;
+    uint2 modGid = uint2((gid.x % cellWidth) * 3, (gid.y % cellHeight) * 3);
+    float4 inColor = inTexture.read(modGid);
+    float4 outColor;
+    uint cellIndex = gid.y / cellHeight * 3 + gid.x / cellWidth;
+    if (cellIndex == 0) {
+        outColor = float4(inColor.r, 0, 0, inColor.a);
+    }
+    else if (cellIndex == 1) {
+        outColor = float4(0, inColor.g, 0, inColor.a);
+    }
+    else if (cellIndex == 2) {
+        outColor = float4(0, 0, inColor.b, inColor.a);
+    }
+    else if (cellIndex == 3) {
+        outColor = float4(1 - inColor.r, 1 - inColor.g, 1 - inColor.b, inColor.a);
+    }
+    else if (cellIndex == 5) {
+        float r = dot(inColor.rgb, float3(0.393, 0.769, 0.189));
+        float g = dot(inColor.rgb, float3(0.349, 0.686, 0.168));
+        float b = dot(inColor.rgb, float3(0.272, 0.534, 0.131));
+        outColor = float4(r > 1 ? 1 : r, g > 1 ? 1 : g, b > 1 ? 1 : b, 1.0);
+    }
+    else if (cellIndex == 6) {
+        outColor.rgba = inColor.gbra;
+    }
+    else if (cellIndex == 7) {
+        outColor.rgb = inColor.brg;
+    }
+    else if (cellIndex == 8) {
+        outColor.rgb = inColor.bgr;
+    }
+    else {
+        outColor = inColor;
+    }
+    outTexture.write(outColor, gid);
+}
+

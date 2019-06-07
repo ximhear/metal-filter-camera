@@ -21,6 +21,7 @@ enum GImageFilterType {
     case centerMagnification
     case swellingUp
     case slimming
+    case `repeat`
     case mpsUnaryImageKernel(type: GMPSUnaryImageFilterType)
     case binaryImageKernel(type: BinaryImageFilterType)
 
@@ -50,6 +51,8 @@ enum GImageFilterType {
             return "Swelling up"
         case .slimming:
             return "Slimming"
+        case .repeat:
+            return "Repeat"
         case .mpsUnaryImageKernel(let type):
             return type.name
         case .binaryImageKernel(let type):
@@ -84,6 +87,8 @@ enum GImageFilterType {
             return GWeightedCenterMagnificationFilter(context: context, filterType: self)
         case .slimming:
             return GSlimmingFilter(context: context, filterType: self)
+        case .repeat:
+            return GImageFilter(functionName: "repeat", context: context, filterType: self)
         case .mpsUnaryImageKernel(let type):
             return GMPSUnaryImageFilter(type: type, context: context, filterType: self)
         case .binaryImageKernel(let type):
