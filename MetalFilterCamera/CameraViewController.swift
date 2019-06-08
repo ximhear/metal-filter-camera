@@ -60,7 +60,7 @@ class CameraViewController: UIViewController {
 
         mtkView.delegate = renderer
         
-        filterType = .repeat// .mpsUnaryImageKernel(type: .laplacian)
+        filterType = .rgbEmphasis// .mpsUnaryImageKernel(type: .laplacian)
         imageFilter = filterType.createImageFilter(context: context)
         changeSliderSetting()
         session = MetalCameraSession(delegate: self)
@@ -169,6 +169,7 @@ extension CameraViewController{
         objects.append(.redEmphasis)
         objects.append(.greenEmphasis)
         objects.append(.blueEmphasis)
+        objects.append(.rgbEmphasis)
         objects.append(.mpsUnaryImageKernel(type: .sobel))
         objects.append(.mpsUnaryImageKernel(type: .laplacian))
         objects.append(.mpsUnaryImageKernel(type: .gaussianBlur))

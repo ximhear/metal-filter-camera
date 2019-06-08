@@ -477,3 +477,35 @@ kernel void emphasizeBlue(texture2d<float, access::read> inTexture [[texture(0)]
     }
     outTexture.write(outColor, gid);
 }
+
+kernel void emphasizeRGB(texture2d<float, access::read> inTexture [[texture(0)]],
+                          texture2d<float, access::write> outTexture [[texture(1)]],
+                          uint2 gid [[thread_position_in_grid]]) {
+    
+    float4 inColor = inTexture.read(gid);
+    float4 outColor;
+    float threshold = 0.35;
+    float thresholdr_g = 0.5;
+    float thresholdr_b = 0.5;
+    float thresholdg_r = 0.75;
+    float thresholdg_b = 0.75;
+    float thresholdb_r = 0.75;
+    float thresholdb_g = 0.75;
+    float emphasis = 1.1;
+    float4 temp = inColor;
+    
+    if (temp.r > threshold && temp.g / temp.r < thresholdr_g && temp.b / temp.r < thresholdr_b) {
+        outColor = float4(inColor.r * emphasis, inColor.g, inColor.b, 1.0);
+    }
+    else if (temp.g > threshold && temp.r / temp.g < thresholdg_r && temp.b / temp.g < thresholdg_b) {
+        outColor = float4(inColor.r, inColor.g * emphasis, inColor.b, 1.0);
+    }
+    else if (temp.b > threshold && temp.r / temp.b < thresholdb_r && temp.g / temp.b < thresholdb_g) {
+        outColor = float4(inColor.r, inColor.g, inColor.b * emphasis, 1.0);
+    }
+    else {
+        float value = dot(inColor.rgb, float3(0.299, 0.587, 0.114));
+        outColor = float4(value, value, value, 1.0);
+    }
+    outTexture.write(outColor, gid);
+}

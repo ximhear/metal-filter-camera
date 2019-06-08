@@ -25,6 +25,7 @@ enum GImageFilterType {
     case redEmphasis
     case greenEmphasis
     case blueEmphasis
+    case rgbEmphasis
     case mpsUnaryImageKernel(type: GMPSUnaryImageFilterType)
     case binaryImageKernel(type: BinaryImageFilterType)
 
@@ -62,6 +63,8 @@ enum GImageFilterType {
             return "Green Emphasis"
         case .blueEmphasis:
             return "Blue Emphasis"
+        case .rgbEmphasis:
+            return "RGB Emphasis"
         case .mpsUnaryImageKernel(let type):
             return type.name
         case .binaryImageKernel(let type):
@@ -104,6 +107,8 @@ enum GImageFilterType {
             return GImageFilter(functionName: "emphasizeGreen", context: context, filterType: self)
         case .blueEmphasis:
             return GImageFilter(functionName: "emphasizeBlue", context: context, filterType: self)
+        case .rgbEmphasis:
+            return GImageFilter(functionName: "emphasizeRGB", context: context, filterType: self)
         case .mpsUnaryImageKernel(let type):
             return GMPSUnaryImageFilter(type: type, context: context, filterType: self)
         case .binaryImageKernel(let type):
