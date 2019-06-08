@@ -22,6 +22,9 @@ enum GImageFilterType {
     case swellingUp
     case slimming
     case `repeat`
+    case redEmphasis
+    case greenEmphasis
+    case blueEmphasis
     case mpsUnaryImageKernel(type: GMPSUnaryImageFilterType)
     case binaryImageKernel(type: BinaryImageFilterType)
 
@@ -53,6 +56,12 @@ enum GImageFilterType {
             return "Slimming"
         case .repeat:
             return "Repeat"
+        case .redEmphasis:
+            return "Red Emphasis"
+        case .greenEmphasis:
+            return "Green Emphasis"
+        case .blueEmphasis:
+            return "Blue Emphasis"
         case .mpsUnaryImageKernel(let type):
             return type.name
         case .binaryImageKernel(let type):
@@ -89,6 +98,12 @@ enum GImageFilterType {
             return GSlimmingFilter(context: context, filterType: self)
         case .repeat:
             return GImageFilter(functionName: "repeat", context: context, filterType: self)
+        case .redEmphasis:
+            return GImageFilter(functionName: "emphasizeRed", context: context, filterType: self)
+        case .greenEmphasis:
+            return GImageFilter(functionName: "emphasizeGreen", context: context, filterType: self)
+        case .blueEmphasis:
+            return GImageFilter(functionName: "emphasizeBlue", context: context, filterType: self)
         case .mpsUnaryImageKernel(let type):
             return GMPSUnaryImageFilter(type: type, context: context, filterType: self)
         case .binaryImageKernel(let type):

@@ -415,3 +415,65 @@ kernel void repeat(texture2d<float, access::read> inTexture [[texture(0)]],
     outTexture.write(outColor, gid);
 }
 
+kernel void emphasizeRed(texture2d<float, access::read> inTexture [[texture(0)]],
+                   texture2d<float, access::write> outTexture [[texture(1)]],
+                   uint2 gid [[thread_position_in_grid]]) {
+    
+    float4 inColor = inTexture.read(gid);
+    float4 outColor;
+    float threshold = 0.35;
+    float thresholdr_g = 0.5;
+    float thresholdr_b = 0.5;
+    float emphasis = 1;
+    float4 temp = inColor;
+    if (temp.r > threshold && temp.g / temp.r < thresholdr_g && temp.b / temp.r < thresholdr_b) {
+        outColor = float4(inColor.r * emphasis, inColor.g, inColor.b, 1.0);
+    }
+    else {
+        float value = dot(inColor.rgb, float3(0.299, 0.587, 0.114));
+        outColor = float4(value, value, value, 1.0);
+    }
+    outTexture.write(outColor, gid);
+}
+
+kernel void emphasizeGreen(texture2d<float, access::read> inTexture [[texture(0)]],
+                         texture2d<float, access::write> outTexture [[texture(1)]],
+                         uint2 gid [[thread_position_in_grid]]) {
+    
+    float4 inColor = inTexture.read(gid);
+    float4 outColor;
+    float threshold = 0.35;
+    float threshold_g = 0.75;
+    float threshold_b = 0.75;
+    float emphasis = 1.1;
+    float4 temp = inColor;
+    if (temp.g > threshold && temp.r / temp.g < threshold_g && temp.b / temp.g < threshold_b) {
+        outColor = float4(inColor.r, inColor.g * emphasis, inColor.b, 1.0);
+    }
+    else {
+        float value = dot(inColor.rgb, float3(0.299, 0.587, 0.114));
+        outColor = float4(value, value, value, 1.0);
+    }
+    outTexture.write(outColor, gid);
+}
+
+kernel void emphasizeBlue(texture2d<float, access::read> inTexture [[texture(0)]],
+                         texture2d<float, access::write> outTexture [[texture(1)]],
+                         uint2 gid [[thread_position_in_grid]]) {
+    
+    float4 inColor = inTexture.read(gid);
+    float4 outColor;
+    float threshold = 0.35;
+    float threshold_r = 0.75;
+    float threshold_b = 0.75;
+    float emphasis = 1.1;
+    float4 temp = inColor;
+    if (temp.b > threshold && temp.r / temp.b < threshold_r && temp.g / temp.b < threshold_b) {
+        outColor = float4(inColor.r, inColor.g, inColor.b * emphasis, 1.0);
+    }
+    else {
+        float value = dot(inColor.rgb, float3(0.299, 0.587, 0.114));
+        outColor = float4(value, value, value, 1.0);
+    }
+    outTexture.write(outColor, gid);
+}
