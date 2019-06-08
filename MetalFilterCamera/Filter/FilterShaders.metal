@@ -353,14 +353,43 @@ kernel void repeat(texture2d<float, access::read> inTexture [[texture(0)]],
     float4 inColor = inTexture.read(modGid);
     float4 outColor;
     uint cellIndex = gid.y / cellHeight * 3 + gid.x / cellWidth;
+    float threshold = 0.35;
+    float thresholdr_g = 0.5;
+    float thresholdr_b = 0.5;
+    float thresholdg_r = 0.75;
+    float thresholdg_b = 0.75;
+    float thresholdb_r = 0.75;
+    float thresholdb_g = 0.75;
+    float emphasis = 1;
     if (cellIndex == 0) {
-        outColor = float4(inColor.r, 0, 0, inColor.a);
+        float4 temp = inColor;
+        if (temp.r > threshold && temp.g / temp.r < thresholdr_g && temp.b / temp.r < thresholdr_b) {
+            outColor = float4(inColor.r * emphasis, 0, 0, 1.0);
+        }
+        else {
+            float value = dot(inColor.rgb, float3(0.299, 0.587, 0.114));
+            outColor = float4(value, value, value, 1.0);
+        }
     }
     else if (cellIndex == 1) {
-        outColor = float4(0, inColor.g, 0, inColor.a);
+        float4 temp = inColor;
+        if (temp.g > 0 && temp.r / temp.g < thresholdg_r && temp.b / temp.g < thresholdg_b) {
+            outColor = float4(0, inColor.g * emphasis, 0, 1.0);
+        }
+        else {
+            float value = dot(inColor.rgb, float3(0.299, 0.587, 0.114));
+            outColor = float4(value, value, value, 1.0);
+        }
     }
     else if (cellIndex == 2) {
-        outColor = float4(0, 0, inColor.b, inColor.a);
+        float4 temp = inColor;
+        if (temp.b > 0 && temp.r / temp.b < thresholdb_r && temp.g / temp.b < thresholdb_g) {
+            outColor = float4(0, 0, inColor.b * emphasis, 1.0);
+        }
+        else {
+            float value = dot(inColor.rgb, float3(0.299, 0.587, 0.114));
+            outColor = float4(value, value, value, 1.0);
+        }
     }
     else if (cellIndex == 3) {
         outColor = float4(1 - inColor.r, 1 - inColor.g, 1 - inColor.b, inColor.a);
