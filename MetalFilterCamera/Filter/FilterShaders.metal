@@ -509,3 +509,25 @@ kernel void emphasizeRGB(texture2d<float, access::read> inTexture [[texture(0)]]
     }
     outTexture.write(outColor, gid);
 }
+
+struct DivideUniforms {
+    int32_t divider;
+};
+
+kernel void divide(texture2d<float, access::read> inTexture [[texture(0)]],
+                   texture2d<float, access::write> outTexture [[texture(1)]],
+                   constant DivideUniforms &uniforms [[buffer(0)]],
+                   uint2 gid [[thread_position_in_grid]]) {
+    
+    uint cellWidth = inTexture.get_width() / uniforms.divider;
+    uint cellHeight = inTexture.get_height() / uniforms.divider;
+    float2 modGid = float2((gid.x % cellWidth), (gid.y % cellHeight));
+    float4 inColor = inTexture.read(gid);
+    float xRatio = fabs(modGid.x - float(cellWidth) / 2) / (float(cellWidth) / 2);
+    float yRatio = fabs(modGid.y - float(cellHeight) / 2) / (float(cellHeight) / 2);
+    float rr = sqrt(xRatio * xRatio + yRatio * yRatio) * 0.5;
+//    float3 out = inColor.rgb*(1-rr) + float3(0.439, 0.259, 0.078) * rr;
+    float3 out = inColor.rgb*(1-rr) + float3(0) * rr;
+    float4 outColor = float4(out, 1.0);
+    outTexture.write(outColor, gid);
+}

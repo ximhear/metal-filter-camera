@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		EC690A91229B787C00FD475B /* GWeightedCenterMagnificationFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC690A90229B787C00FD475B /* GWeightedCenterMagnificationFilter.swift */; };
 		EC690A93229B905100FD475B /* GSlmmingFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC690A92229B905100FD475B /* GSlmmingFilter.swift */; };
+		EC73BD1022BC9F77001284AE /* GDivideFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC73BD0F22BC9F77001284AE /* GDivideFilter.swift */; };
 		ECD1D57C229638DE00C30A10 /* GCenterMagnificationFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD1D57B229638DE00C30A10 /* GCenterMagnificationFilter.swift */; };
 		ECEF3662228B8AF6007414A1 /* SimpleTextureProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEF3661228B8AF6007414A1 /* SimpleTextureProvider.swift */; };
 		ECEF3669228B8C06007414A1 /* UIImage-extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEF3666228B8C05007414A1 /* UIImage-extension.swift */; };
@@ -48,6 +49,7 @@
 /* Begin PBXFileReference section */
 		EC690A90229B787C00FD475B /* GWeightedCenterMagnificationFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GWeightedCenterMagnificationFilter.swift; sourceTree = "<group>"; };
 		EC690A92229B905100FD475B /* GSlmmingFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GSlmmingFilter.swift; sourceTree = "<group>"; };
+		EC73BD0F22BC9F77001284AE /* GDivideFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDivideFilter.swift; sourceTree = "<group>"; };
 		ECD1D57B229638DE00C30A10 /* GCenterMagnificationFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCenterMagnificationFilter.swift; sourceTree = "<group>"; };
 		ECEF3661228B8AF6007414A1 /* SimpleTextureProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTextureProvider.swift; sourceTree = "<group>"; };
 		ECEF3666228B8C05007414A1 /* UIImage-extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage-extension.swift"; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				ECD1D57B229638DE00C30A10 /* GCenterMagnificationFilter.swift */,
 				EC690A90229B787C00FD475B /* GWeightedCenterMagnificationFilter.swift */,
 				EC690A92229B905100FD475B /* GSlmmingFilter.swift */,
+				EC73BD0F22BC9F77001284AE /* GDivideFilter.swift */,
 				ECFE601F2289424F006AF284 /* MainBundleTextureProvider.swift */,
 				ECFE60222289424F006AF284 /* BinaryImageFilter.swift */,
 				ECFE60232289424F006AF284 /* GLuminanceFilter.swift */,
@@ -280,6 +283,7 @@
 				ECFE60372289424F006AF284 /* GImageFilterType.swift in Sources */,
 				EC690A93229B905100FD475B /* GSlmmingFilter.swift in Sources */,
 				ECEF366B228B8C06007414A1 /* UIImageExtension.swift in Sources */,
+				EC73BD1022BC9F77001284AE /* GDivideFilter.swift in Sources */,
 				ECFE60342289424F006AF284 /* GLuminanceFilter.swift in Sources */,
 				ECFE603E22894ED2006AF284 /* FilterShaders.metal in Sources */,
 				EC690A91229B787C00FD475B /* GWeightedCenterMagnificationFilter.swift in Sources */,
