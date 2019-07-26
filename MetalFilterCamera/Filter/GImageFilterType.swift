@@ -29,6 +29,7 @@ enum GImageFilterType {
     case divide
     case mpsUnaryImageKernel(type: GMPSUnaryImageFilterType)
     case binaryImageKernel(type: BinaryImageFilterType)
+    case carnivalMirror
 
     var name: String {
         switch self {
@@ -68,6 +69,8 @@ enum GImageFilterType {
             return "RGB Emphasis"
         case .divide:
             return "Divide"
+        case .carnivalMirror:
+            return "Carnival Mirror"
         case .mpsUnaryImageKernel(let type):
             return type.name
         case .binaryImageKernel(let type):
@@ -114,6 +117,8 @@ enum GImageFilterType {
             return GImageFilter(functionName: "emphasizeRGB", context: context, filterType: self)
         case .divide:
             return GDivideFilter(context: context, filterType: self)
+        case .carnivalMirror:
+            return GCarnivalMirrorFilter(context: context, filterType: self)
         case .mpsUnaryImageKernel(let type):
             return GMPSUnaryImageFilter(type: type, context: context, filterType: self)
         case .binaryImageKernel(let type):

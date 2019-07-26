@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C4F8D16AC0756607D30C1418 /* GCarnivalMirrorFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F8D861CD68E294D8CAB8EA /* GCarnivalMirrorFilter.swift */; };
 		EC690A91229B787C00FD475B /* GWeightedCenterMagnificationFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC690A90229B787C00FD475B /* GWeightedCenterMagnificationFilter.swift */; };
 		EC690A93229B905100FD475B /* GSlmmingFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC690A92229B905100FD475B /* GSlmmingFilter.swift */; };
 		EC73BD1022BC9F77001284AE /* GDivideFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC73BD0F22BC9F77001284AE /* GDivideFilter.swift */; };
@@ -47,6 +48,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C4F8D861CD68E294D8CAB8EA /* GCarnivalMirrorFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCarnivalMirrorFilter.swift; sourceTree = "<group>"; };
 		EC690A90229B787C00FD475B /* GWeightedCenterMagnificationFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GWeightedCenterMagnificationFilter.swift; sourceTree = "<group>"; };
 		EC690A92229B905100FD475B /* GSlmmingFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GSlmmingFilter.swift; sourceTree = "<group>"; };
 		EC73BD0F22BC9F77001284AE /* GDivideFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GDivideFilter.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				ECFE60272289424F006AF284 /* GNormalMapFilter.swift */,
 				ECEF3661228B8AF6007414A1 /* SimpleTextureProvider.swift */,
 				ECFE603D22894ED1006AF284 /* FilterShaders.metal */,
+				C4F8D861CD68E294D8CAB8EA /* GCarnivalMirrorFilter.swift */,
 			);
 			path = Filter;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				ECEF366A228B8C06007414A1 /* MTLTexture-extension.swift in Sources */,
 				ECFE5FF72288F222006AF284 /* AppDelegate.swift in Sources */,
 				ECFE602C2289424F006AF284 /* GSepiaFilter.swift in Sources */,
+				C4F8D16AC0756607D30C1418 /* GCarnivalMirrorFilter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

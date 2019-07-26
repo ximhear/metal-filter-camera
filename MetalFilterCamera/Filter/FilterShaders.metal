@@ -518,7 +518,7 @@ kernel void divide(texture2d<float, access::read> inTexture [[texture(0)]],
                    texture2d<float, access::write> outTexture [[texture(1)]],
                    constant DivideUniforms &uniforms [[buffer(0)]],
                    uint2 gid [[thread_position_in_grid]]) {
-    
+
     uint cellWidth = inTexture.get_width() / uniforms.divider;
     uint cellHeight = inTexture.get_height() / uniforms.divider;
     float2 modGid = float2((gid.x % cellWidth), (gid.y % cellHeight));
@@ -530,4 +530,35 @@ kernel void divide(texture2d<float, access::read> inTexture [[texture(0)]],
     float3 out = inColor.rgb*(1-rr) + float3(0) * rr;
     float4 outColor = float4(out, 1.0);
     outTexture.write(outColor, gid);
+}
+
+//
+struct CarnivalMirrorUniforms {
+    int32_t wavelength;
+    int32_t amount;
+};
+
+kernel void carnivalMirror(texture2d<float, access::read> inTexture [[texture(0)]],
+                   texture2d<float, access::write> outTexture [[texture(1)]],
+                   constant CarnivalMirrorUniforms &uniforms [[buffer(0)]],
+                   uint2 gid [[thread_position_in_grid]]) {
+
+    int y = gid.y + int(sin(gid.y / float(uniforms.wavelength)) * uniforms.amount);
+    int x = gid.x + int(sin(gid.x / float(uniforms.wavelength)) * uniforms.amount);
+    int width = int(inTexture.get_width());
+    int height = int(inTexture.get_height());
+    if (x < 0) {
+        x = 0;
+    }
+    else if (width <= x) {
+        x = width - 1;
+    }
+    if (y < 0) {
+        y = 0;
+    }
+    else if (height <= y) {
+        y = height - 1;
+    }
+    float4 inColor = inTexture.read(uint2(x, y));
+    outTexture.write(inColor, gid);
 }
