@@ -230,8 +230,8 @@ extension CameraViewController{
             self.slider.value = 20
         case .kuwahara:
             self.slider.minimumValue = 1
-            self.slider.maximumValue = 10
-            self.slider.value = 5
+            self.slider.maximumValue = 20
+            self.slider.value = 10
         case .luminance:
             slider.isHidden = true
         case .normalMap:

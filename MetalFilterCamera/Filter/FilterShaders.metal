@@ -578,10 +578,11 @@ kernel void kuwahara(texture2d<float, access::read> inTexture [[texture(0)]],
     float3 means[4];
     float3 stdDevs[4];
     
+    float3 zero3 = float3(0.0);
     for (int i = 0; i < 4; i++)
     {
-        means[i] = float3(0.0);
-        stdDevs[i] = float3(0.0);
+        means[i] = zero3;
+        stdDevs[i] = zero3;
     }
     
     for (int x = -radius; x <= radius; x++)
