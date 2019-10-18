@@ -16,6 +16,7 @@
 		ECEF3669228B8C06007414A1 /* UIImage-extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEF3666228B8C05007414A1 /* UIImage-extension.swift */; };
 		ECEF366A228B8C06007414A1 /* MTLTexture-extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEF3667228B8C05007414A1 /* MTLTexture-extension.swift */; };
 		ECEF366B228B8C06007414A1 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEF3668228B8C05007414A1 /* UIImageExtension.swift */; };
+		ECF2985C23599D6500EA2A33 /* GKuwaharaFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF2985B23599D6500EA2A33 /* GKuwaharaFilter.swift */; };
 		ECFE5FF72288F222006AF284 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE5FF62288F222006AF284 /* AppDelegate.swift */; };
 		ECFE5FFA2288F222006AF284 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE5FF92288F222006AF284 /* Renderer.swift */; };
 		ECFE5FFC2288F222006AF284 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFE5FFB2288F222006AF284 /* CameraViewController.swift */; };
@@ -57,6 +58,7 @@
 		ECEF3666228B8C05007414A1 /* UIImage-extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage-extension.swift"; sourceTree = "<group>"; };
 		ECEF3667228B8C05007414A1 /* MTLTexture-extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MTLTexture-extension.swift"; sourceTree = "<group>"; };
 		ECEF3668228B8C05007414A1 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		ECF2985B23599D6500EA2A33 /* GKuwaharaFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKuwaharaFilter.swift; sourceTree = "<group>"; };
 		ECFE5FF32288F222006AF284 /* MetalFilterCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetalFilterCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECFE5FF62288F222006AF284 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ECFE5FF82288F222006AF284 /* ShaderTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShaderTypes.h; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				ECEF3661228B8AF6007414A1 /* SimpleTextureProvider.swift */,
 				ECFE603D22894ED1006AF284 /* FilterShaders.metal */,
 				C4F8D861CD68E294D8CAB8EA /* GCarnivalMirrorFilter.swift */,
+				ECF2985B23599D6500EA2A33 /* GKuwaharaFilter.swift */,
 			);
 			path = Filter;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECFE60362289424F006AF284 /* GTextureProvider.swift in Sources */,
+				ECF2985C23599D6500EA2A33 /* GKuwaharaFilter.swift in Sources */,
 				ECFE60282289424F006AF284 /* GImageFilter.swift in Sources */,
 				ECFE601122890E9F006AF284 /* MetalCameraSession.swift in Sources */,
 				ECFE6015228926F9006AF284 /* GZLog.swift in Sources */,

@@ -562,3 +562,68 @@ kernel void carnivalMirror(texture2d<float, access::read> inTexture [[texture(0)
     float4 inColor = inTexture.read(uint2(x, y));
     outTexture.write(inColor, gid);
 }
+
+struct KuwaharaUniforms {
+    int32_t radius;
+};
+
+kernel void kuwahara(texture2d<float, access::read> inTexture [[texture(0)]],
+                     texture2d<float, access::write> outTexture [[texture(1)]],
+                     constant KuwaharaUniforms &uniforms [[buffer(0)]],
+                     uint2 gid [[thread_position_in_grid]]) {
+    
+    int radius = uniforms.radius;
+    float n = float((radius + 1) * (radius + 1));
+    
+    float3 means[4];
+    float3 stdDevs[4];
+    
+    for (int i = 0; i < 4; i++)
+    {
+        means[i] = float3(0.0);
+        stdDevs[i] = float3(0.0);
+    }
+    
+    for (int x = -radius; x <= radius; x++)
+    {
+        for (int y = -radius; y <= radius; y++)
+        {
+            uint2 transformed = gid + uint2(x,y);
+            float3 color = inTexture.read(transformed).rgb;
+            
+            float3 colorA = float3(float(x <= 0 && y <= 0)) * color;
+            means[0] += colorA;
+            stdDevs[0] += colorA * colorA;
+            
+            float3 colorB = float3(float(x >= 0 && y <= 0)) * color;
+            means[1] +=  colorB;
+            stdDevs[1] += colorB * colorB;
+            
+            float3 colorC = float3(float(x <= 0 && y >= 0)) * color;
+            means[2] += colorC;
+            stdDevs[2] += colorC * colorC;
+            
+            float3 colorD = float3(float(x >= 0 && y >= 0)) * color;
+            means[3] += colorD;
+            stdDevs[3] += colorD * colorD;
+            
+        }
+    }
+    
+    float minSigma2 = 1e+2;
+    float3 returnColor = float3(0.0);
+    
+    for (int j = 0; j < 4; j++)
+    {
+        means[j] /= n;
+        stdDevs[j] = abs(stdDevs[j] / n - means[j] * means[j]);
+        
+        float sigma2 = stdDevs[j].r + stdDevs[j].g + stdDevs[j].b;
+        
+        returnColor = (sigma2 < minSigma2) ? means[j] : returnColor;
+        minSigma2 = (sigma2 < minSigma2) ? sigma2 : minSigma2;
+    }
+    
+    float4 outColor = float4(returnColor, 1.0);
+    outTexture.write(outColor, gid);
+}

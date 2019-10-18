@@ -30,6 +30,7 @@ enum GImageFilterType {
     case mpsUnaryImageKernel(type: GMPSUnaryImageFilterType)
     case binaryImageKernel(type: BinaryImageFilterType)
     case carnivalMirror
+    case kuwahara
 
     var name: String {
         switch self {
@@ -71,6 +72,8 @@ enum GImageFilterType {
             return "Divide"
         case .carnivalMirror:
             return "Carnival Mirror"
+        case .kuwahara:
+            return "Kuwahara"
         case .mpsUnaryImageKernel(let type):
             return type.name
         case .binaryImageKernel(let type):
@@ -119,6 +122,8 @@ enum GImageFilterType {
             return GDivideFilter(context: context, filterType: self)
         case .carnivalMirror:
             return GCarnivalMirrorFilter(context: context, filterType: self)
+        case .kuwahara:
+            return GKuwaharaFilter(context: context, filterType: self)
         case .mpsUnaryImageKernel(let type):
             return GMPSUnaryImageFilter(type: type, context: context, filterType: self)
         case .binaryImageKernel(let type):

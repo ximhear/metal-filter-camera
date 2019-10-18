@@ -60,7 +60,7 @@ class CameraViewController: UIViewController {
 
         mtkView.delegate = renderer
         
-        filterType = .carnivalMirror// .mpsUnaryImageKernel(type: .laplacian)
+        filterType = .kuwahara// .mpsUnaryImageKernel(type: .laplacian)
         imageFilter = filterType.createImageFilter(context: context)
         changeSliderSetting()
         session = MetalCameraSession(delegate: self)
@@ -172,6 +172,7 @@ extension CameraViewController{
         objects.append(.rgbEmphasis)
         objects.append(.divide)
         objects.append(.carnivalMirror)
+        objects.append(.kuwahara)
         objects.append(.mpsUnaryImageKernel(type: .sobel))
         objects.append(.mpsUnaryImageKernel(type: .laplacian))
         objects.append(.mpsUnaryImageKernel(type: .gaussianBlur))
@@ -227,6 +228,10 @@ extension CameraViewController{
             self.slider.minimumValue = 20
             self.slider.maximumValue = 50
             self.slider.value = 20
+        case .kuwahara:
+            self.slider.minimumValue = 1
+            self.slider.maximumValue = 10
+            self.slider.value = 5
         case .luminance:
             slider.isHidden = true
         case .normalMap:
